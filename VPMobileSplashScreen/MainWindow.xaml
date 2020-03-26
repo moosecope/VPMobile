@@ -1,0 +1,32 @@
+﻿<Window x:Class="VPMobileSplashScreen.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VPMobileSplashScreen"
+        mc:Ignorable="d"
+        Title="VP Mobile" x:Name="thisWindow" Height="332" Width="353" Loaded="Window_Loaded" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="incidents_12.ico">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="30"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF2C9296" Offset="0"/>
+                <GradientStop Color="#FF54C9CE" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Image Grid.Column="1" Source="VPLogo_FINAL_white.png"/>
+        <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Margin="0,0,0,5" TextWrapping="Wrap" Text="{Binding ElementName=thisWindow, Path=CurrentStep}" FontStretch="SemiCondensed" TextAlignment="Center" Foreground="White" FontSize="16"/>
+            <TextBlock Margin="0" TextWrapping="Wrap" Text="{Binding ElementName=thisWindow, Path=CurrentFile}" FontStretch="SemiCondensed" TextAlignment="Center" Foreground="White"/>
+        </StackPanel>
+    </Grid>
+</Window>

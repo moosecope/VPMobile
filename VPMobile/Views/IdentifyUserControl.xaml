@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="VP_Mobile.Views.IdentifyUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VP_Mobile.Views"
+             xmlns:converters="clr-namespace:VP_Mobile.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" x:Name="thisControl">
+    <UserControl.Resources>
+        <converters:UnderScoreConverter x:Key="underScoreConverter" />
+    </UserControl.Resources>
+    <Border CornerRadius="10" Background="{StaticResource ResourceKey=VPGray}" BorderBrush="{StaticResource ResourceKey=VPTeal}" BorderThickness="3" >
+        <ScrollViewer Margin="7">
+            <ItemsControl Background="Transparent" ItemsSource="{Binding ElementName=thisControl, Path=IdentifyFeatures}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border CornerRadius="10" Background="{StaticResource ResourceKey=VPGray}" BorderBrush="{StaticResource ResourceKey=VPTeal}" DataContext="{Binding}" BorderThickness="3" MouseUp="Feature_MouseUp" Margin="3">
+                            <StackPanel>
+                                <Label Content="{Binding FeatureTable.FeatureLayer.Name}" HorizontalAlignment="Center" FontWeight="Bold"/>
+                                <ItemsControl Margin="7" Background="Transparent" ItemsSource="{Binding Attributes}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Key, Converter={StaticResource underScoreConverter}, StringFormat={}{0}: }" FontWeight="Bold"/>
+                                                <TextBlock Text="{Binding Value}" TextWrapping="Wrap" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Border>
+</UserControl>

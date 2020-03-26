@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="VPMobileService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost/VPMobileService/VPMobileService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost/VPMobileService/VPMobileService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost/VPMobileService/VPMobileService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/VPMobileObjects" />
+      <xsd:import schemaLocation="http://localhost/VPMobileService/VPMobileService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost/VPMobileService/VPMobileService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IVPMobileService_GetConfig_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfig" />
+  </wsdl:message>
+  <wsdl:message name="IVPMobileService_GetConfig_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfigResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVPMobileService_GetConfigs_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfigs" />
+  </wsdl:message>
+  <wsdl:message name="IVPMobileService_GetConfigs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfigsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVPMobileService_UpdateConfig_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateConfig" />
+  </wsdl:message>
+  <wsdl:message name="IVPMobileService_UpdateConfig_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateConfigResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVPMobileService_AddConfig_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddConfig" />
+  </wsdl:message>
+  <wsdl:message name="IVPMobileService_AddConfig_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddConfigResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVPMobileService_GetAllRoutingFileInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllRoutingFileInfo" />
+  </wsdl:message>
+  <wsdl:message name="IVPMobileService_GetAllRoutingFileInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllRoutingFileInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVPMobileService_DeleteConfig_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteConfig" />
+  </wsdl:message>
+  <wsdl:message name="IVPMobileService_DeleteConfig_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteConfigResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVPMobileService_GetMainUpdateFileList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMainUpdateFileList" />
+  </wsdl:message>
+  <wsdl:message name="IVPMobileService_GetMainUpdateFileList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMainUpdateFileListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVPMobileService_GetSplashUpdateFileList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSplashUpdateFileList" />
+  </wsdl:message>
+  <wsdl:message name="IVPMobileService_GetSplashUpdateFileList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSplashUpdateFileListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVPMobileService_GetMainUpdateFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMainUpdateFile" />
+  </wsdl:message>
+  <wsdl:message name="IVPMobileService_GetMainUpdateFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMainUpdateFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVPMobileService_GetSplashUpdateFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSplashUpdateFile" />
+  </wsdl:message>
+  <wsdl:message name="IVPMobileService_GetSplashUpdateFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSplashUpdateFileResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IVPMobileService">
+    <wsdl:operation name="GetConfig">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVPMobileService/GetConfig" message="tns:IVPMobileService_GetConfig_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVPMobileService/GetConfigResponse" message="tns:IVPMobileService_GetConfig_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetConfigs">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVPMobileService/GetConfigs" message="tns:IVPMobileService_GetConfigs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVPMobileService/GetConfigsResponse" message="tns:IVPMobileService_GetConfigs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateConfig">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVPMobileService/UpdateConfig" message="tns:IVPMobileService_UpdateConfig_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVPMobileService/UpdateConfigResponse" message="tns:IVPMobileService_UpdateConfig_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddConfig">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVPMobileService/AddConfig" message="tns:IVPMobileService_AddConfig_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVPMobileService/AddConfigResponse" message="tns:IVPMobileService_AddConfig_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRoutingFileInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVPMobileService/GetAllRoutingFileInfo" message="tns:IVPMobileService_GetAllRoutingFileInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVPMobileService/GetAllRoutingFileInfoResponse" message="tns:IVPMobileService_GetAllRoutingFileInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteConfig">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVPMobileService/DeleteConfig" message="tns:IVPMobileService_DeleteConfig_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVPMobileService/DeleteConfigResponse" message="tns:IVPMobileService_DeleteConfig_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMainUpdateFileList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVPMobileService/GetMainUpdateFileList" message="tns:IVPMobileService_GetMainUpdateFileList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVPMobileService/GetMainUpdateFileListResponse" message="tns:IVPMobileService_GetMainUpdateFileList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSplashUpdateFileList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVPMobileService/GetSplashUpdateFileList" message="tns:IVPMobileService_GetSplashUpdateFileList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVPMobileService/GetSplashUpdateFileListResponse" message="tns:IVPMobileService_GetSplashUpdateFileList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMainUpdateFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVPMobileService/GetMainUpdateFile" message="tns:IVPMobileService_GetMainUpdateFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVPMobileService/GetMainUpdateFileResponse" message="tns:IVPMobileService_GetMainUpdateFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSplashUpdateFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVPMobileService/GetSplashUpdateFile" message="tns:IVPMobileService_GetSplashUpdateFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVPMobileService/GetSplashUpdateFileResponse" message="tns:IVPMobileService_GetSplashUpdateFile_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IVPMobileService" type="tns:IVPMobileService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetConfig">
+      <soap:operation soapAction="http://tempuri.org/IVPMobileService/GetConfig" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConfigs">
+      <soap:operation soapAction="http://tempuri.org/IVPMobileService/GetConfigs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateConfig">
+      <soap:operation soapAction="http://tempuri.org/IVPMobileService/UpdateConfig" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddConfig">
+      <soap:operation soapAction="http://tempuri.org/IVPMobileService/AddConfig" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRoutingFileInfo">
+      <soap:operation soapAction="http://tempuri.org/IVPMobileService/GetAllRoutingFileInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteConfig">
+      <soap:operation soapAction="http://tempuri.org/IVPMobileService/DeleteConfig" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMainUpdateFileList">
+      <soap:operation soapAction="http://tempuri.org/IVPMobileService/GetMainUpdateFileList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSplashUpdateFileList">
+      <soap:operation soapAction="http://tempuri.org/IVPMobileService/GetSplashUpdateFileList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMainUpdateFile">
+      <soap:operation soapAction="http://tempuri.org/IVPMobileService/GetMainUpdateFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSplashUpdateFile">
+      <soap:operation soapAction="http://tempuri.org/IVPMobileService/GetSplashUpdateFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="VPMobileService">
+    <wsdl:port name="BasicHttpBinding_IVPMobileService" binding="tns:BasicHttpBinding_IVPMobileService">
+      <soap:address location="http://localhost/VPMobileService/VPMobileService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

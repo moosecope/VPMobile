@@ -1,0 +1,61 @@
+﻿<Window x:Class="VPMobileAdmin.Views.EditCacheDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VPMobileAdmin.Views"
+        xmlns:viewModels="clr-namespace:VPMobileAdmin.ViewModels"
+        xmlns:converters="clr-namespace:VPMobileAdmin.Converters"
+        xmlns:vpmObjects="clr-namespace:VPMobileObjects;assembly=VPMobileObjects"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance viewModels:EditCacheViewModel}"
+        Title="Edit Cache Options" Height="296" Width="625" ShowInTaskbar="False" WindowStartupLocation="CenterOwner" Icon="/VPMobileAdmin;component/vp_icons_white_bg.ico">
+    <Window.Resources>
+        <converters:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
+        <converters:InverseBooleanConverter x:Key="inverseConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="264"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="43"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="136"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="10,10,0,10" Width="45" VerticalContentAlignment="Center"/>
+        <TextBox Margin="65,11,150,9" TextWrapping="Wrap" Text="{Binding Configuration.Name, Mode=TwoWay}" Grid.ColumnSpan="2" VerticalContentAlignment="Center"/>
+        <CheckBox Content="Is Visible by Default" Grid.Column="1" Margin="0,10,10,10" VerticalContentAlignment="Center" FlowDirection="RightToLeft" HorizontalAlignment="Right" Width="130" IsChecked="{Binding Configuration.IsVisibleDefault, Mode=TwoWay}"/>
+        
+        <GroupBox Header="Sync Options" Margin="10,10,5,0" Grid.RowSpan="2" Grid.Row="1">
+            <StackPanel>
+                <RadioButton Content="Always Sync" Height="28" VerticalContentAlignment="Center" IsChecked="{Binding Configuration.SyncType, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static vpmObjects:CacheSyncTypes.AlwaysSync}, Mode=TwoWay}"/>
+                <RadioButton Content="Never Sync" Height="28" VerticalContentAlignment="Center" IsChecked="{Binding Configuration.SyncType, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static vpmObjects:CacheSyncTypes.NeverSync}, Mode=TwoWay}"/>
+                <RadioButton Content="Manual Sync" Height="28" VerticalContentAlignment="Center" IsChecked="{Binding Configuration.SyncType, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static vpmObjects:CacheSyncTypes.AdminSync}, Mode=TwoWay}"/>
+                <!--<CheckBox Content="Purge local copy on update" Height="20" VerticalContentAlignment="Center" Margin="10,0,0,0" IsChecked="{Binding Configuration.PurgeOnSync, Mode=TwoWay}" />-->
+                <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                    <Label Content="{Binding Configuration.LastUpdate, StringFormat=Last Updated On: {0:d}}" Height="24" VerticalContentAlignment="Center" Padding="5,0" ScrollViewer.CanContentScroll="True"/>
+                    <Button Content="Update" Height="24" Width="64" HorizontalAlignment="Center" Click="Update_Cache_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+        
+        <Label Content="Identifying Layers:" Grid.Column="1" Grid.Row="1" VerticalContentAlignment="Bottom" Padding="5,0,0,0"/>
+        <ListBox Grid.Column="1" Margin="5,5,10,0" Grid.Row="2" ItemsSource="{Binding IdentifyingLayers}" IsEnabled="{Binding Configuration.IsBaseMap, Converter={StaticResource inverseConverter}}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding First, Mode=TwoWay}" Content="{Binding Second.Name}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <StackPanel Grid.ColumnSpan="2" HorizontalAlignment="Center" Height="30" Margin="0" Grid.Row="3" VerticalAlignment="Center" Width="180" Orientation="Horizontal">
+            <Button Content="Ok" IsDefault="True" Width="80" Click="Ok_Click"/>
+            <Button Content="Cancel" IsCancel="True" Width="80" Margin="20,0,0,0"/>
+        </StackPanel>
+    </Grid>
+</Window>

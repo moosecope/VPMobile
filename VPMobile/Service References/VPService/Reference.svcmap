@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f1800cb1-4cc2-4585-bf58-75fd53a46346" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/VPCoreService/VPMService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="VPMService.xsd" MetadataType="Schema" ID="87553419-abdf-4d1b-91bc-cd3dfa795f5f" SourceId="1" SourceUrl="http://localhost/VPCoreService/VPMService.svc?xsd=xsd0" />
+    <MetadataFile FileName="VPMService1.xsd" MetadataType="Schema" ID="10e9647c-280b-4706-b6d5-c774e6e024d6" SourceId="1" SourceUrl="http://localhost/VPCoreService/VPMService.svc?xsd=xsd1" />
+    <MetadataFile FileName="VPMService2.xsd" MetadataType="Schema" ID="a649ab2d-394e-4267-a681-fe2b49c61db4" SourceId="1" SourceUrl="http://localhost/VPCoreService/VPMService.svc?xsd=xsd2" />
+    <MetadataFile FileName="VPMService3.xsd" MetadataType="Schema" ID="5c993c54-070c-4914-972b-10cf3bd36433" SourceId="1" SourceUrl="http://localhost/VPCoreService/VPMService.svc?xsd=xsd3" />
+    <MetadataFile FileName="VPMService.wsdl" MetadataType="Wsdl" ID="e4fc60bb-3a51-4723-b70a-0e3dd46dff4f" SourceId="1" SourceUrl="http://localhost/VPCoreService/VPMService.svc?wsdl" />
+    <MetadataFile FileName="VPMService.disco" MetadataType="Disco" ID="9562b681-550d-46ad-9323-5fb061a09b0d" SourceId="1" SourceUrl="http://localhost/VPCoreService/VPMService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

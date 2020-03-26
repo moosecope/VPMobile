@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VPMobileSplashScreen", "VPMobileSplashScreen.csproj", "{4AFA4D70-5B39-4C01-92DD-9E52ABF61FBF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9F0D4985-7D24-4785-A780-A536215C221D} = {9F0D4985-7D24-4785-A780-A536215C221D}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VPMobileService", "..\VPMobileService\VPMobileService.csproj", "{9F0D4985-7D24-4785-A780-A536215C221D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4AFA4D70-5B39-4C01-92DD-9E52ABF61FBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AFA4D70-5B39-4C01-92DD-9E52ABF61FBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AFA4D70-5B39-4C01-92DD-9E52ABF61FBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AFA4D70-5B39-4C01-92DD-9E52ABF61FBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F0D4985-7D24-4785-A780-A536215C221D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F0D4985-7D24-4785-A780-A536215C221D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F0D4985-7D24-4785-A780-A536215C221D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F0D4985-7D24-4785-A780-A536215C221D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://devserver:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = VPMobileSplashScreen.csproj
+		SccLocalPath1 = .
+		SccProjectUniqueName2 = ..\\VPMobileService\\VPMobileService.csproj
+		SccProjectName2 = ../VPMobileService
+		SccLocalPath2 = ..\\VPMobileService
+	EndGlobalSection
+EndGlobal

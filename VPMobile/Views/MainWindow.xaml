@@ -1,0 +1,143 @@
+﻿<Window x:Class="VP_Mobile.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
+        xmlns:local="clr-namespace:VP_Mobile.Views"
+        xmlns:viewModels="clr-namespace:VP_Mobile.ViewModels"
+        xmlns:converters="clr-namespace:VP_Mobile.Converters"
+        xmlns:objects="clr-namespace:VPMobileObjects;assembly=VPMobileObjects"
+        mc:Ignorable="d"
+        Title="{Binding Config.Name, StringFormat=VP Mobile - {0}}" Height="668" Width="924"
+        d:DataContext="{d:DesignInstance viewModels:MainViewModel}" Loaded="Window_Loaded" MinHeight="545" MinWidth="840" WindowStartupLocation="CenterScreen" Icon="/VP Mobile;component/incidents_12.ico" >
+    <Window.Resources>
+        <converters:BoolToVisibilityConverter x:Key="boolConverter" />
+        <converters:NullToVisibilityConverter x:Key="nullConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="60"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="21"/>
+        </Grid.RowDefinitions>
+        <esri:MapView x:Name="mvwMain" Map="{Binding Map}" LayerViewStateChanged="MapView_LayerViewStateChanged" DrawStatusChanged="MapView_DrawStatusChanged" Grid.ColumnSpan="7" Margin="0,0,0,1" Grid.RowSpan="12">
+            <esri:MapView.GraphicsOverlays>
+                <esri:GraphicsOverlay x:Name="RoutingGraphicsLayer" />
+                <esri:GraphicsOverlay x:Name="LocationGraphicsLayer" />
+            </esri:MapView.GraphicsOverlays>
+            <esri:MapView.BackgroundGrid>
+                <esri:BackgroundGrid Color="White" GridLineColor="Transparent"/>
+            </esri:MapView.BackgroundGrid>
+        </esri:MapView>
+        <Label Content="{Binding ProgressMessage}" Opacity="{Binding ProgressOpacity}" Grid.Column="3" Margin="0,0,262,0" Grid.Row="11" Padding="0,0,5,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.ColumnSpan="2"/>
+        <ProgressBar Value="{Binding Progress}" Maximum="{Binding ProgressTotal}" Opacity="{Binding ProgressOpacity}" Margin="0,0,31,0" HorizontalAlignment="Right" Width="230" Grid.Row="11" Grid.Column="4" />
+        <local:LocationToolUserControl Grid.Column="2" Grid.Row="1" Grid.RowSpan="8" VerticalAlignment="Bottom" Margin="0,0,0,5" x:Name="ucFind"/>
+        <local:UserSettingsUserControl Grid.Column="2" Margin="0,0,0,5" Grid.Row="1" Grid.RowSpan="8" HorizontalAlignment="Left" VerticalAlignment="Bottom" x:Name="ucUserSettings"/>
+
+        <local:IncidentsListUserControl x:Name="ucIncidents" Grid.Column="4" Margin="5,0,5,5" Grid.Row="1" Grid.RowSpan="10"/>
+        <local:AvlListUserControl x:Name="ucAvl" Grid.Column="4" Margin="5,0,5,5" Grid.Row="1" Grid.RowSpan="10"/>
+        <local:LegendUserControl x:Name="ucLegend" Grid.Column="4" Margin="5,0,5,5" Grid.Row="1" Grid.RowSpan="10"/>
+        <local:RoutingUserControl x:Name="ucRouting" Visibility="{Binding RoutingVisible, Converter={StaticResource boolConverter}}" RoutingInstructions="{Binding RoutingInstructions}" ClearRoutingDataClick="Clear_Routing_Data_Click"  Grid.Column="4" Margin="5,0,5,5" Grid.Row="1" Grid.RowSpan="10"/>
+        <local:IdentifyUserControl x:Name="ucIdentify" Visibility="{Binding IdentifyVisible, Converter={StaticResource boolConverter}}" IdentifyFeatures="{Binding IdentifiedFeatures}" IdentifyFeatureClick="Identify_Feature_Click" Grid.Column="4" Margin="5,0,5,5" Grid.Row="1" Grid.RowSpan="10"/>
+        <StackPanel Grid.Column="6" Grid.Row="1" Grid.RowSpan="4">
+            <!--RIGHT TOP-->
+            <Border Background="{StaticResource ResourceKey=VPGray}" BorderBrush="{StaticResource ResourceKey=VPTeal}" CornerRadius="26,0,0,26" BorderThickness="3,3,0,3" Margin="0,2" Height="56">
+                <Image Margin="5" MouseUp="Incidents_MouseUp" Source="/VP Mobile;component/Resources/VP Icon-11.png"/>
+            </Border>
+            <Border Background="{StaticResource ResourceKey=VPGray}" BorderBrush="{StaticResource ResourceKey=VPTeal}" CornerRadius="26,0,0,26" BorderThickness="3,3,0,3" Margin="0,2" Height="56" Visibility="{Binding Config.AvlEnabled, Converter={StaticResource boolConverter}}">
+                <Image Margin="5" MouseUp="Avl_MouseUp" Source="/VP Mobile;component/Resources/VP Icon-17.png"/>
+            </Border>
+            <Border Background="{StaticResource ResourceKey=VPGray}" BorderBrush="{StaticResource ResourceKey=VPTeal}" CornerRadius="26,0,0,26" BorderThickness="3,3,0,3" Margin="0,2" Height="56" Visibility="{Binding Config.LegendEnabled, Converter={StaticResource boolConverter}}">
+                <Image Margin="5" MouseUp="Legend_MouseUp" Source="/VP Mobile;component/Resources/VP Icon-04.png"/>
+            </Border>
+            <Border Background="{StaticResource ResourceKey=VPGray}" BorderBrush="{StaticResource ResourceKey=VPTeal}" CornerRadius="26,0,0,26" BorderThickness="3,3,0,3" Margin="0,2" Height="56" Visibility="{Binding RoutingEnabled, Converter={StaticResource boolConverter}}">
+                <Image Margin="5" MouseUp="Routing_MouseUp" Source="/VP Mobile;component/Resources/VP Icon-03.png"/>
+            </Border>
+            <Border Background="{StaticResource ResourceKey=VPGray}" BorderBrush="{StaticResource ResourceKey=VPTeal}" CornerRadius="26,0,0,26" BorderThickness="3,3,0,3" Margin="0,2" Height="56" Visibility="{Binding IdentifyVisible, Converter={StaticResource boolConverter}}">
+                <Image Margin="5" MouseUp="Identify_Close_MouseUp" Source="/VP Mobile;component/Resources/VP Icon-18.png"/>
+            </Border>
+        </StackPanel>
+        <!--RIGHT BOTTOM-->
+        <Border Grid.Column="6" Grid.Row="9" Background="{StaticResource ResourceKey=VPGray}" BorderBrush="{StaticResource ResourceKey=VPTeal}" CornerRadius="26,0,0,26" BorderThickness="3,3,0,3" Margin="0,2" Visibility="{Binding GpsEnabled, Converter={StaticResource boolConverter}}">
+            <Image Margin="5" MouseUp="GPS_Center_MouseUp" Source="/VP Mobile;component/Resources/VP Icon-02.png"/>
+        </Border>
+        <Border Grid.Column="6" Grid.Row="10" Background="{StaticResource ResourceKey=VPGray}" BorderBrush="{StaticResource ResourceKey=VPTeal}" CornerRadius="26,0,0,26" BorderThickness="3,3,0,3" Margin="0,2" Visibility="{Binding GpsEnabled, Converter={StaticResource boolConverter}}">
+            <Image Margin="5" MouseUp="GPS_Keep_Center_MouseUp" Source="/VP Mobile;component/Resources/VP Icon-01.png"/>
+        </Border>
+        <!--LEFT TOP-->
+        <Border Grid.Row="1" Background="{StaticResource ResourceKey=VPGray}" BorderBrush="{StaticResource ResourceKey=VPTeal}" CornerRadius="0,26,26,0" BorderThickness="0,3,3,3" Margin="0,2">
+            <Image Margin="5" MouseUp="Initial_Extent_MouseUp" Source="/VP Mobile;component/Resources/VP Icon-08.png"/>
+        </Border>
+        <Border Grid.Row="2" Background="{StaticResource ResourceKey=VPGray}" BorderBrush="{StaticResource ResourceKey=VPTeal}" CornerRadius="0,26,26,0" BorderThickness="0,3,3,3" Margin="0,2">
+            <Image Margin="5" MouseUp="Zoom_In_MouseUp" Source="/VP Mobile;component/Resources/VP Icon-09.png"/>
+        </Border>
+        <Border Grid.Row="3" Background="{StaticResource ResourceKey=VPGray}" BorderBrush="{StaticResource ResourceKey=VPTeal}" CornerRadius="0,26,26,0" BorderThickness="0,3,3,3" Margin="0,2">
+            <Image Margin="5" MouseUp="Zoom_Out_MouseUp" Source="/VP Mobile;component/Resources/VP Icon-10.png"/>
+        </Border>
+        <!--LEFT BOTTOM-->
+        <Grid Grid.Row="9" Grid.ColumnSpan="3" Visibility="{Binding FindButtonsVisible, Converter={StaticResource boolConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="60"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="2" Background="{StaticResource ResourceKey=VPGray}" BorderBrush="{StaticResource ResourceKey=VPTeal}" CornerRadius="0,26,26,0" BorderThickness="3" Margin="-23,2,0,2">
+                <Image Margin="23,7,11,7" Source="/VP Mobile;component/Resources/VP Icon-07.png" MouseUp="Identify_MouseUp"/>
+            </Border>
+            <Border Grid.Column="1" Background="{StaticResource ResourceKey=VPGray}" BorderBrush="{StaticResource ResourceKey=VPTeal}" CornerRadius="0,26,26,0" BorderThickness="3" Margin="-23,2,0,2">
+                <Image Margin="23,7,11,7" Source="/VP Mobile;component/Resources/VP Icon-06.png" MouseUp="Find_MouseUp"/>
+            </Border>
+        </Grid>
+        <Border Grid.Row="9" Background="{StaticResource ResourceKey=VPGray}" BorderBrush="{StaticResource ResourceKey=VPTeal}" CornerRadius="0,26,26,0" BorderThickness="0,3,3,3" Margin="0,2">
+            <Image Margin="5" MouseUp="Location_Tools_MouseUp" Source="{Binding FindToolImage}"/>
+        </Border>
+        <Grid Grid.Row="10" Grid.ColumnSpan="3" Visibility="{Binding SettingsButtonsVisible, Converter={StaticResource boolConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="5" Background="{StaticResource ResourceKey=VPGray}" BorderBrush="{StaticResource ResourceKey=VPTeal}" CornerRadius="0,26,26,0" BorderThickness="3" Margin="-23,2,0,2">
+                <Image Margin="23,7,11,7" Width="40" MouseUp="Help_MouseUp" Source="/VP Mobile;component/Resources/VP Icon-14.png"/>
+            </Border>
+            <Border Grid.Column="4" Background="{StaticResource ResourceKey=VPGray}" BorderBrush="{StaticResource ResourceKey=VPTeal}" CornerRadius="0,26,26,0" BorderThickness="3" Margin="-23,2,0,2"  Visibility="{Binding Config.AvlEnabled, Converter={StaticResource boolConverter}}">
+                <Image Margin="23,7,11,7" Width="40" MouseUp="Avl_Visibility_MouseUp" Source="/VP Mobile;component/Resources/VP Icon-17.png"/>
+            </Border>
+            <Border Grid.Column="3" Background="{StaticResource ResourceKey=VPGray}" BorderBrush="{StaticResource ResourceKey=VPTeal}" CornerRadius="0,26,26,0" BorderThickness="3" Margin="-23,2,0,2" Visibility="{Binding HasBaseMap, Converter={StaticResource boolConverter}}">
+                <Image Margin="23,7,11,7" Width="40" MouseUp="Base_Map_MouseUp" Source="/VP Mobile;component/Resources/VP Icon-15.png"/>
+            </Border>
+            <Border Grid.Column="2" Background="{StaticResource ResourceKey=VPGray}" BorderBrush="{StaticResource ResourceKey=VPTeal}" CornerRadius="0,26,26,0" BorderThickness="3" Margin="-23,2,0,2">
+                <Image Margin="23,7,11,7" Width="40" MouseUp="Night_Mode_MouseUp" Source="/VP Mobile;component/Resources/VP Icon-16.png"/>
+            </Border>
+            <Border Grid.Column="1" Background="{StaticResource ResourceKey=VPGray}" BorderBrush="{StaticResource ResourceKey=VPTeal}" CornerRadius="0,26,26,0" BorderThickness="3" Margin="-23,2,0,2">
+                <Image Margin="23,7,11,7" Width="40" Source="/VP Mobile;component/Resources/VP Icon-13.png" MouseUp="Settings_MouseUp"/>
+            </Border>
+        </Grid>
+        <Border Grid.Row="10" Background="{StaticResource ResourceKey=VPGray}" BorderBrush="{StaticResource ResourceKey=VPTeal}" CornerRadius="0,26,26,0" BorderThickness="0,3,3,3" Margin="0,2">
+            <Image Margin="5" MouseUp="Setting_Buttons_MouseUp" Source="/VP Mobile;component/Resources/VP Icon-13.png"/>
+        </Border>
+        <local:SelectConfigUserControl x:Name="ucSelectConfig" Grid.ColumnSpan="7" Grid.RowSpan="12"/>
+    </Grid>
+</Window>

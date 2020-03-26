@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="VP_Mobile.Views.AvlGroupUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VP_Mobile.Views"
+             xmlns:viewModels="clr-namespace:VP_Mobile.ViewModels"
+             xmlns:converters="clr-namespace:VP_Mobile.Converters"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300" x:Name="thisControl">
+    <UserControl.Resources>
+        <converters:BoolToVisibilityConverter x:Key="boolConverter" />
+    </UserControl.Resources>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="45"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border x:Name="bdrGroupColor" CornerRadius="10 10 0 0" Background="{Binding ElementName=thisControl, Path=AvlGroup.GroupColor}" BorderBrush="{StaticResource ResourceKey=VPTeal}" BorderThickness="3" Grid.ColumnSpan="2" MouseUp="Group_MouseUp"/>
+            <Label Content="{Binding ElementName=thisControl, Path=AvlGroup.GroupName}" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Padding="5" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,7,0,0" FontWeight="Bold" FontSize="14"/>
+            <CheckBox Content="" Grid.Column="1" Margin="0,7,7,0" VerticalContentAlignment="Center" IsChecked="{Binding ElementName=thisControl, Path=AvlGroup.Visible, Mode=TwoWay}">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+            <ItemsControl ItemsSource="{Binding ElementName=thisControl, Path=AvlGroup.AvlUnits}" Background="Transparent" Margin="0,2,0,0" Grid.Row="1" Grid.ColumnSpan="2" Visibility="{Binding ElementName=thisControl, Path=AvlGroup.Expanded, Converter={StaticResource boolConverter}}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border CornerRadius="10" Background="{StaticResource ResourceKey=VPGray}" BorderBrush="{StaticResource ResourceKey=VPTeal}" BorderThickness="3" MouseUp="Unit_MouseUp" DataContext="{Binding}" Margin="0,3">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding GroupImage}" Width="40" Height="40" Margin="7,7,2,7"/>
+                                <Label Content="{Binding UnitID}" VerticalContentAlignment="Center" Margin="2,7,7,7"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+</UserControl>

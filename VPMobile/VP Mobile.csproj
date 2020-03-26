@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A9851BE7-E969-401A-8690-462515F76FF0}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VP_Mobile</RootNamespace>
+    <AssemblyName>VP Mobile</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>incidents_12.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>GTGkey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Esri.ArcGISRuntime, Version=100.3.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <HintPath>packages\Esri.ArcGISRuntime.WPF.100.3.0\lib\net461\Esri.ArcGISRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="GeoAPI, Version=1.1.0.0, Culture=neutral, PublicKeyToken=a1a0da7def465678, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\TFS_Working\Binaries\GeoAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="GTG.Utilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\TFS_Working\Binaries\GTG.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\..\Binaries\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MapSuiteCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=0828af5241fb4207, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\TFS_Working\Binaries\MapSuiteCore.DLL</HintPath>
+    </Reference>
+    <Reference Include="MapSuiteRouting, Version=5.0.0.0, Culture=neutral, PublicKeyToken=0828af5241fb4207, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\TFS_Working\Binaries\MapSuiteRouting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="NetTopologySuite, Version=1.7.3.31740, Culture=neutral, PublicKeyToken=f580a05016ebada1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\TFS_Working\Binaries\NetTopologySuite.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\InverseNullToVisibilityConverter.cs" />
+    <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Converters\UnderScoreConverter.cs" />
+    <Compile Include="Models\GPSListener.cs" />
+    <Compile Include="Models\LatLonDecimalDegreesConverter.cs" />
+    <Compile Include="Models\Point.cs" />
+    <Compile Include="ViewModels\AvlGroupViewModel.cs" />
+    <Compile Include="ViewModels\AvlListViewModel.cs" />
+    <Compile Include="ViewModels\AvlViewModel.cs" />
+    <Compile Include="ViewModels\CallTypeViewModel.cs" />
+    <Compile Include="Models\DoubleValidationRule.cs" />
+    <Compile Include="ViewModels\IncidentViewModel.cs" />
+    <Compile Include="Models\IntegerValidationRule.cs" />
+    <Compile Include="Service References\VPMobileService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\VPService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Static Helpers\EnumHelper.cs" />
+    <Compile Include="Static Helpers\ErrorHelper.cs" />
+    <Compile Include="ViewModels\IncidentsListViewModel.cs" />
+    <Compile Include="ViewModels\LegendViewModel.cs" />
+    <Compile Include="Models\Cache.cs" />
+    <Compile Include="ViewModels\LocationToolViewModel.cs" />
+    <Compile Include="ViewModels\RoutingViewModel.cs" />
+    <Compile Include="ViewModels\TreeViewItem.cs" />
+    <Compile Include="ViewModels\SelectConfigViewModel.cs" />
+    <Compile Include="ViewModels\UserSettingsViewModel.cs" />
+    <Compile Include="Views\AvlListUserControl.xaml.cs">
+      <DependentUpon>AvlListUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AvlGroupUserControl.xaml.cs">
+      <DependentUpon>AvlGroupUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IdentifyUserControl.xaml.cs">
+      <DependentUpon>IdentifyUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IncidentsListUserControl.xaml.cs">
+      <DependentUpon>IncidentsListUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IncidentUserControl.xaml.cs">
+      <DependentUpon>IncidentUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LocationToolUserControl.xaml.cs">
+      <DependentUpon>LocationToolUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RoutingUserControl.xaml.cs">
+      <DependentUpon>RoutingUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SelectConfigUserControl.xaml.cs">
+      <DependentUpon>SelectConfigUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\VirtualToggleButton.cs" />
+    <Compile Include="Views\UserSettingsUserControl.xaml.cs">
+      <DependentUpon>UserSettingsUserControl.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\AvlListUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AvlGroupUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\IdentifyUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\IncidentsListUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\IncidentUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LegendUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LocationToolUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\LegendUserControl.xaml.cs">
+      <DependentUpon>LegendUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Page Include="Views\RoutingUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SelectConfigUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserSettingsUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Resource Include="Resources\VP Icon-18.png" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Content Include="logging.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="GTGkey.pfx" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\VPMobileObjects.RoutingFileInfo.datasource" />
+    <None Include="Properties\DataSources\VPMobileObjects.UpdateFileInfo.datasource" />
+    <None Include="Properties\DataSources\VPMobileObjects.VPMobileSettings.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="Service References\VPMobileService\VPMobileService.wsdl" />
+    <None Include="Service References\VPMobileService\VPMobileService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VPMobileService\VPMobileService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VPMobileService\VPMobileService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VPMobileService\VPMobileService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VPMobileService\VPMobileService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VPService\VPMService.wsdl" />
+    <None Include="Service References\VPService\VPMService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VPService\VPMService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VPService\VPMService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VPService\VPMService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VPService\VP_Mobile.VPService.VPMobileAVLSettings.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VPService\VP_Mobile.VPService.VPMobileDispatchSettings.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\VPMobileService\" />
+    <WCFMetadataStorage Include="Service References\VPService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\VPMobileService\VPMobileService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\VPMobileService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\VPMobileService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\VPMobileService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\VPService\VPMService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\VPService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\VPService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\VPService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VPMobileObjects\VPMobileObjects.csproj">
+      <Project>{77A1CD56-7013-4D61-AE53-E363A6655254}</Project>
+      <Name>VPMobileObjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VPMobileRuntime\VPMobileRuntime100-1-0.csproj">
+      <Project>{3866AE07-22E3-4BC6-8C56-B895491C6BD6}</Project>
+      <Name>VPMobileRuntime100-1-0</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\VP Icon-01.png" />
+    <Resource Include="Resources\VP Icon-02.png" />
+    <Resource Include="Resources\VP Icon-03.png" />
+    <Resource Include="Resources\VP Icon-04.png" />
+    <Resource Include="Resources\VP Icon-08.png" />
+    <Resource Include="Resources\VP Icon-09.png" />
+    <Resource Include="Resources\VP Icon-10.png" />
+    <Resource Include="Resources\VP Icon-11.png" />
+    <Resource Include="Resources\VP Icon-12.png" />
+    <Resource Include="Resources\VP Icon-13.png" />
+    <Resource Include="Resources\VP Icon-14.png" />
+    <Resource Include="Resources\VP Icon-15.png" />
+    <Resource Include="Resources\VP Icon-16.png" />
+    <Resource Include="Resources\VP Icon-17.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\VP Icon-05.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\VP Icon-06.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\VP Icon-07.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="incidents_12.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Esri.ArcGISRuntime.WPF.100.1.0\build\net452\Esri.ArcGISRuntime.WPF.targets" Condition="Exists('..\packages\Esri.ArcGISRuntime.WPF.100.1.0\build\net452\Esri.ArcGISRuntime.WPF.targets')" />
+  <Import Project="packages\Esri.ArcGISRuntime.WPF.100.3.0\build\net461\Esri.ArcGISRuntime.WPF.targets" Condition="Exists('packages\Esri.ArcGISRuntime.WPF.100.3.0\build\net461\Esri.ArcGISRuntime.WPF.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Esri.ArcGISRuntime.WPF.100.3.0\build\net461\Esri.ArcGISRuntime.WPF.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Esri.ArcGISRuntime.WPF.100.3.0\build\net461\Esri.ArcGISRuntime.WPF.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

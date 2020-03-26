@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VPMobileAdmin", "VPMobileAdmin.csproj", "{59A2821F-E506-49B6-A31B-62B39A2FB154}"
+	ProjectSection(ProjectDependencies) = postProject
+		{49CB4417-F292-4869-A552-C49F272036E6} = {49CB4417-F292-4869-A552-C49F272036E6}
+		{9F0D4985-7D24-4785-A780-A536215C221D} = {9F0D4985-7D24-4785-A780-A536215C221D}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VPMobileObjects", "..\VPMobileObjects\VPMobileObjects.csproj", "{77A1CD56-7013-4D61-AE53-E363A6655254}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VPMobileService", "..\VPMobileService\VPMobileService.csproj", "{9F0D4985-7D24-4785-A780-A536215C221D}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "VPCoreService", "..\..\VP Viewer\VPCoreService\VPCoreService\VPCoreService.vbproj", "{49CB4417-F292-4869-A552-C49F272036E6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59A2821F-E506-49B6-A31B-62B39A2FB154}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59A2821F-E506-49B6-A31B-62B39A2FB154}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59A2821F-E506-49B6-A31B-62B39A2FB154}.Debug|x86.ActiveCfg = Debug|x86
+		{59A2821F-E506-49B6-A31B-62B39A2FB154}.Debug|x86.Build.0 = Debug|x86
+		{59A2821F-E506-49B6-A31B-62B39A2FB154}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59A2821F-E506-49B6-A31B-62B39A2FB154}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59A2821F-E506-49B6-A31B-62B39A2FB154}.Release|x86.ActiveCfg = Release|x86
+		{59A2821F-E506-49B6-A31B-62B39A2FB154}.Release|x86.Build.0 = Release|x86
+		{77A1CD56-7013-4D61-AE53-E363A6655254}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77A1CD56-7013-4D61-AE53-E363A6655254}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77A1CD56-7013-4D61-AE53-E363A6655254}.Debug|x86.ActiveCfg = Debug|x86
+		{77A1CD56-7013-4D61-AE53-E363A6655254}.Debug|x86.Build.0 = Debug|x86
+		{77A1CD56-7013-4D61-AE53-E363A6655254}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77A1CD56-7013-4D61-AE53-E363A6655254}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77A1CD56-7013-4D61-AE53-E363A6655254}.Release|x86.ActiveCfg = Release|x86
+		{77A1CD56-7013-4D61-AE53-E363A6655254}.Release|x86.Build.0 = Release|x86
+		{9F0D4985-7D24-4785-A780-A536215C221D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F0D4985-7D24-4785-A780-A536215C221D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F0D4985-7D24-4785-A780-A536215C221D}.Debug|x86.ActiveCfg = Debug|x86
+		{9F0D4985-7D24-4785-A780-A536215C221D}.Debug|x86.Build.0 = Debug|x86
+		{9F0D4985-7D24-4785-A780-A536215C221D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F0D4985-7D24-4785-A780-A536215C221D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F0D4985-7D24-4785-A780-A536215C221D}.Release|x86.ActiveCfg = Release|x86
+		{9F0D4985-7D24-4785-A780-A536215C221D}.Release|x86.Build.0 = Release|x86
+		{49CB4417-F292-4869-A552-C49F272036E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49CB4417-F292-4869-A552-C49F272036E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49CB4417-F292-4869-A552-C49F272036E6}.Debug|x86.ActiveCfg = Debug|x86
+		{49CB4417-F292-4869-A552-C49F272036E6}.Debug|x86.Build.0 = Debug|x86
+		{49CB4417-F292-4869-A552-C49F272036E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49CB4417-F292-4869-A552-C49F272036E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49CB4417-F292-4869-A552-C49F272036E6}.Release|x86.ActiveCfg = Release|x86
+		{49CB4417-F292-4869-A552-C49F272036E6}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://devserver:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = VPMobileAdmin.csproj
+		SccLocalPath1 = .
+		SccProjectUniqueName2 = ..\\VPMobileObjects\\VPMobileObjects.csproj
+		SccProjectName2 = ../VPMobileObjects
+		SccLocalPath2 = ..\\VPMobileObjects
+		SccProjectUniqueName3 = ..\\VPMobileService\\VPMobileService.csproj
+		SccProjectName3 = ../VPMobileService
+		SccLocalPath3 = ..\\VPMobileService
+		SccProjectUniqueName4 = ..\\..\\VP\u0020Viewer\\VPCoreService\\VPCoreService\\VPCoreService.vbproj
+		SccProjectName4 = ../../VP\u0020Viewer/VPCoreService/VPCoreService
+		SccLocalPath4 = ..\\..\\VP\u0020Viewer\\VPCoreService\\VPCoreService
+	EndGlobalSection
+EndGlobal

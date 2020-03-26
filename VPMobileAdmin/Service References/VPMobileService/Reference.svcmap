@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="cff5d6d2-1148-4a8e-92e1-588b416a3d4b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/VPMobileService/VPMobileservice.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="VPMobileService5.xsd" MetadataType="Schema" ID="3716e84e-dca3-4973-874d-58428abfd072" SourceId="1" SourceUrl="http://localhost/VPMobileService/VPMobileService.svc?xsd=xsd3" />
+    <MetadataFile FileName="VPMobileService51.xsd" MetadataType="Schema" ID="be3c243b-05e9-4e5b-9707-b3e19aee8bb3" SourceId="1" SourceUrl="http://localhost/VPMobileService/VPMobileService.svc?xsd=xsd2" />
+    <MetadataFile FileName="VPMobileService52.xsd" MetadataType="Schema" ID="7bdab51b-43f6-4b6e-be8b-bd4087f7129f" SourceId="1" SourceUrl="http://localhost/VPMobileService/VPMobileService.svc?xsd=xsd1" />
+    <MetadataFile FileName="VPMobileService53.xsd" MetadataType="Schema" ID="24d1ef05-c1e9-4fc0-ba73-3df5afa62807" SourceId="1" SourceUrl="http://localhost/VPMobileService/VPMobileService.svc?xsd=xsd0" />
+    <MetadataFile FileName="VPMobileService54.xsd" MetadataType="Schema" ID="2b55d452-6447-408f-9e65-373f884e099e" SourceId="1" SourceUrl="http://localhost/VPMobileService/VPMobileService.svc?xsd=xsd4" />
+    <MetadataFile FileName="VPMobileService1.wsdl" MetadataType="Wsdl" ID="0cc51040-c9a2-40f3-9652-0b2bc8cdd711" SourceId="1" SourceUrl="http://localhost/VPMobileService/VPMobileService.svc?wsdl" />
+    <MetadataFile FileName="VPMobileService1.disco" MetadataType="Disco" ID="5c46c086-c0ed-4973-95c4-b22d64a28629" SourceId="1" SourceUrl="http://localhost/VPMobileService/VPMobileService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/VPMobileObjects" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VPMobileObjects" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/VPMobileService/VPMobileService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost/VPMobileService/VPMobileService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="VPMobileSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AvlConfigID" type="ser:guid" />
+      <xs:element minOccurs="0" name="AvlEnabled" type="xs:boolean" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="AvlGroups" nillable="true" type="q1:ArrayOfint" />
+      <xs:element minOccurs="0" name="AvlID" type="ser:guid" />
+      <xs:element minOccurs="0" name="AvlListVisible" type="xs:boolean" />
+      <xs:element minOccurs="0" name="AvlLocOption" type="xs:boolean" />
+      <xs:element minOccurs="0" name="AvlServerAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DispatchConfigID" type="ser:guid" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="DispatchGroups" nillable="true" type="q2:ArrayOfstring" />
+      <xs:element minOccurs="0" name="DispatchID" type="ser:guid" />
+      <xs:element minOccurs="0" name="FirstIncidentDisplayField" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FullExtent" nillable="true" type="tns:Envelope" />
+      <xs:element minOccurs="0" name="Geocoders" nillable="true" type="tns:ArrayOfGeocoderSettings" />
+      <xs:element minOccurs="0" name="LegendEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MapIconLarge" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MapServices" nillable="true" type="tns:ArrayOfCacheSettings" />
+      <xs:element minOccurs="0" name="MapTextLarge" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReportUnitNumber" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Routing" nillable="true" type="tns:RoutingSettings" />
+      <xs:element minOccurs="0" name="SecondIncidentDisplayField" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StreetList" nillable="true" type="tns:ArrayOfStreetFinderSettings" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VPMobileSettings" nillable="true" type="tns:VPMobileSettings" />
+  <xs:complexType name="Envelope">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MaxScale" type="xs:double" />
+      <xs:element minOccurs="0" name="MinScale" type="xs:double" />
+      <xs:element minOccurs="0" name="WKID" type="xs:int" />
+      <xs:element minOccurs="0" name="XMax" type="xs:double" />
+      <xs:element minOccurs="0" name="XMin" type="xs:double" />
+      <xs:element minOccurs="0" name="YMax" type="xs:double" />
+      <xs:element minOccurs="0" name="YMin" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Envelope" nillable="true" type="tns:Envelope" />
+  <xs:complexType name="ArrayOfGeocoderSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GeocoderSettings" nillable="true" type="tns:GeocoderSettings" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGeocoderSettings" nillable="true" type="tns:ArrayOfGeocoderSettings" />
+  <xs:complexType name="GeocoderSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AptNumberField" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CacheName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HouseNumberField" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LayerID" type="xs:int" />
+      <xs:element minOccurs="0" name="LayerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LeftFromField" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LeftToField" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MinMatchScore" type="xs:int" />
+      <xs:element minOccurs="0" name="PreDirField" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RightFromField" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RightToField" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StreetNameField" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StreetTypeField" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SufDirField" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" type="tns:GeocoderTypes" />
+      <xs:element minOccurs="0" name="ZoneField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GeocoderSettings" nillable="true" type="tns:GeocoderSettings" />
+  <xs:simpleType name="GeocoderTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SingleField" />
+      <xs:enumeration value="SingleHouse" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="GeocoderTypes" nillable="true" type="tns:GeocoderTypes" />
+  <xs:complexType name="ArrayOfCacheSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CacheSettings" nillable="true" type="tns:CacheSettings" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCacheSettings" nillable="true" type="tns:ArrayOfCacheSettings" />
+  <xs:complexType name="CacheSettings">
+    <xs:sequence>
+      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="IdentifyingLayers" nillable="true" type="q3:ArrayOfstring" />
+      <xs:element minOccurs="0" name="IsBaseMap" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsVisibleDefault" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastUpdate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PurgeOnSync" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SyncEnvelope" nillable="true" type="tns:Envelope" />
+      <xs:element minOccurs="0" name="SyncType" type="tns:CacheSyncTypes" />
+      <xs:element minOccurs="0" name="URL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="XMLIdentifyingLayers" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CacheSettings" nillable="true" type="tns:CacheSettings" />
+  <xs:simpleType name="CacheSyncTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AlwaysSync" />
+      <xs:enumeration value="AdminSync" />
+      <xs:enumeration value="NeverSync" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="CacheSyncTypes" nillable="true" type="tns:CacheSyncTypes" />
+  <xs:complexType name="RoutingSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="OneWayField" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OneWayFieldIndicator" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShapeFilePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SpeedLimitField" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StreetNameField" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WKID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RoutingSettings" nillable="true" type="tns:RoutingSettings" />
+  <xs:complexType name="ArrayOfStreetFinderSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="StreetFinderSettings" nillable="true" type="tns:StreetFinderSettings" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfStreetFinderSettings" nillable="true" type="tns:ArrayOfStreetFinderSettings" />
+  <xs:complexType name="StreetFinderSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CacheName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LayerID" type="xs:int" />
+      <xs:element minOccurs="0" name="LayerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StreetNameField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StreetFinderSettings" nillable="true" type="tns:StreetFinderSettings" />
+  <xs:complexType name="ArrayOfRoutingFileInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RoutingFileInfo" nillable="true" type="tns:RoutingFileInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRoutingFileInfo" nillable="true" type="tns:ArrayOfRoutingFileInfo" />
+  <xs:complexType name="RoutingFileInfo">
+    <xs:sequence>
+      <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Fields" nillable="true" type="q4:ArrayOfstring" />
+      <xs:element minOccurs="0" name="RoutingFileName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RoutingFileInfo" nillable="true" type="tns:RoutingFileInfo" />
+  <xs:complexType name="ArrayOfUpdateFileInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UpdateFileInfo" nillable="true" type="tns:UpdateFileInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUpdateFileInfo" nillable="true" type="tns:ArrayOfUpdateFileInfo" />
+  <xs:complexType name="UpdateFileInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FileDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileSize" type="xs:long" />
+      <xs:element minOccurs="0" name="RelativeFilePath" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UpdateFileInfo" nillable="true" type="tns:UpdateFileInfo" />
+</xs:schema>

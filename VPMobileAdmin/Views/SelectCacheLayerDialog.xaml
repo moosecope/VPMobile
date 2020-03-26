@@ -1,0 +1,30 @@
+﻿<Window x:Class="VPMobileAdmin.Views.SelectCacheLayerDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VPMobileAdmin.Views"
+        xmlns:viewModels="clr-namespace:VPMobileAdmin.ViewModels"
+        xmlns:converters="clr-namespace:VPMobileAdmin.Converters"
+        xmlns:vpmObjects="clr-namespace:VPMobileObjects;assembly=VPMobileObjects"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance viewModels:SelectCacheLayerViewModel}"
+        Title="Select Layer" Height="249" Width="636" ShowInTaskbar="False" WindowStartupLocation="CenterOwner" Icon="/VPMobileAdmin;component/vp_icons_white_bg.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="37"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Content="Cache:" Margin="5,-1,5,0" VerticalContentAlignment="Bottom"/>
+        <ComboBox Margin="5,5,5,4" Grid.Row="1" ItemsSource="{Binding Caches}" DisplayMemberPath="Name" SelectedValuePath="URL" SelectedValue="{Binding ServiceUrl}"/>
+        <Label Content="Layer:" Margin="5,0" VerticalContentAlignment="Bottom" Grid.Row="2"/>
+        <ComboBox Margin="5" Grid.Row="3" ItemsSource="{Binding Service.Layers}" DisplayMemberPath="Name" SelectedItem="{Binding Layer}" IsDropDownOpen="{Binding IsLayerDropDownOpen, Mode=TwoWay}"/>
+        <StackPanel HorizontalAlignment="Center" Height="30" Margin="0" Grid.Row="4" VerticalAlignment="Center" Width="176" Orientation="Horizontal">
+            <Button Content="Ok" HorizontalAlignment="Left" Height="28" Margin="0" Width="78" Click="Ok_Click"/>
+            <Button Content="Cancel" HorizontalAlignment="Left" Height="28" Margin="20,0,0,0" Width="78" IsCancel="True"/>
+        </StackPanel>
+    </Grid>
+</Window>

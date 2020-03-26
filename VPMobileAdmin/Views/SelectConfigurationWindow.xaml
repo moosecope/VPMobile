@@ -1,0 +1,35 @@
+﻿<Window x:Class="VPMobileAdmin.Views.SelectConfigurationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VPMobileAdmin.Views"
+        xmlns:viewModels="clr-namespace:VPMobileAdmin.ViewModels"
+        xmlns:converters="clr-namespace:VPMobileAdmin.Converters"
+        xmlns:vpmObjects="clr-namespace:VPMobileObjects;assembly=VPMobileObjects"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance viewModels:SelectConfigurationViewModel}"
+        Title="VP Mobile Admin" Height="300" Width="300" WindowStartupLocation="CenterScreen" Icon="/VPMobileAdmin;component/vp_icons_white_bg.ico">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="213*"/>
+            <RowDefinition Height="55"/>
+        </Grid.RowDefinitions>
+        <ListView x:Name="lstConfigurations" Margin="10,10,10,0" ItemsSource="{Binding Configurations}" SelectionChanged="lstConfigurations_SelectionChanged">
+            <ListView.View>
+                <GridView AllowsColumnReorder="False">
+                    <GridViewColumn Width="100" Header="Name" DisplayMemberBinding="{Binding Path=Item1}"/>
+                    <GridViewColumn Width="150" Header="Description" DisplayMemberBinding="{Binding Path=Item2}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal">
+            <Button Content="Add" Width="60" Click="Add_Click"/>
+            <Button x:Name="btnConfigurationEdit" Content="Edit" Margin="20,0,0,0" Width="60" Click="Edit_Click" IsEnabled="False"/>
+            <Button x:Name="btnConfigurationDelete" Content="Delete" Margin="20,0,0,0" Width="60" Click="Delete_Click" IsEnabled="False"/>
+        </StackPanel>
+    </Grid>
+</Window>

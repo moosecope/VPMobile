@@ -1,0 +1,36 @@
+﻿<Window x:Class="VPMobileAdmin.Views.SelectFieldDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VPMobileAdmin.Views"
+        xmlns:viewModels="clr-namespace:VPMobileAdmin.ViewModels"
+        xmlns:converters="clr-namespace:VPMobileAdmin.Converters"
+        xmlns:vpmObjects="clr-namespace:VPMobileObjects;assembly=VPMobileObjects"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance viewModels:SelectFieldViewModel}"
+        Title="Select Street Name Field" Height="300" Width="400" ShowInTaskbar="False" WindowStartupLocation="CenterOwner" Icon="/VPMobileAdmin;component/vp_icons_white_bg.ico">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+        <ListView Margin="10,10,0,0" Grid.ColumnSpan="3" ItemsSource="{Binding Layer.LayerInfo.Fields}" SelectedItem="{Binding Field}">
+            <ListView.View>
+                <GridView AllowsColumnReorder="False">
+                    <GridViewColumn Width="135" Header="Field Name" DisplayMemberBinding="{Binding Path=Name}"/>
+                    <GridViewColumn Width="135" Header="Field Alias" DisplayMemberBinding="{Binding Path=Alias}"/>
+                    <GridViewColumn Width="85" Header="Field Type" DisplayMemberBinding="{Binding Path=Type}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Content="Ok" Grid.Column="1" Margin="5,20" Grid.Row="1" IsDefault="True" Click="Ok_Click"/>
+        <Button Content="Cancel" Grid.Column="2" Margin="5,20" Grid.Row="1" IsCancel="True"/>
+    </Grid>
+</Window>
