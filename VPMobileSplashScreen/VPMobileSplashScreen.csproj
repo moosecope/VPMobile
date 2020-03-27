@@ -43,10 +43,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GTG.Utilities">
-      <HintPath>C:\TFS_Working\Binaries\GTG.Utilities.dll</HintPath>
+      <HintPath>..\..\Binaries\GTG.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
-      <HintPath>..\..\..\Binaries\log4net.dll</HintPath>
+      <HintPath>..\..\Binaries\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -60,9 +60,6 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="VPMobileObjects">
-      <HintPath>..\VPMobileObjects\bin\Debug\VPMobileObjects.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -166,6 +163,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="incidents_12.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VPMobileObjects\VPMobileObjects.csproj">
+      <Project>{77a1cd56-7013-4d61-ae53-e363a6655254}</Project>
+      <Name>VPMobileObjects</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

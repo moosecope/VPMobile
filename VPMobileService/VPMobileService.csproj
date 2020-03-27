@@ -16,7 +16,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -49,35 +49,13 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GeoAPI, Version=1.1.0.0, Culture=neutral, PublicKeyToken=a1a0da7def465678, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\TFS_Working\Binaries\GeoAPI.dll</HintPath>
+    <Reference Include="GTG.Utilities">
+      <HintPath>..\..\Binaries\GTG.Utilities.dll</HintPath>
     </Reference>
-    <Reference Include="GTG.Utilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\TFS_Working\Binaries\GTG.Utilities.dll</HintPath>
-    </Reference>
-    <Reference Include="gtgRouter, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d4fa009b70f29ef0, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\TFS_Working\Binaries\gtgRouter.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\TFS_Working\Binaries\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="MapSuiteCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=0828af5241fb4207, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\TFS_Working\Binaries\MapSuiteCore.DLL</HintPath>
-    </Reference>
-    <Reference Include="MapSuiteRouting, Version=5.0.0.0, Culture=neutral, PublicKeyToken=0828af5241fb4207, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\TFS_Working\Binaries\MapSuiteRouting.dll</HintPath>
+    <Reference Include="log4net">
+      <HintPath>..\..\Binaries\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="NetTopologySuite, Version=1.7.3.31740, Culture=neutral, PublicKeyToken=f580a05016ebada1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\TFS_Working\Binaries\NetTopologySuite.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -123,12 +101,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\VPMobileObjects\VPMobileObjects.csproj">
-      <Project>{77a1cd56-7013-4d61-ae53-e363a6655254}</Project>
-      <Name>VPMobileObjects</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -162,7 +134,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52031</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/VPMobileService</IISUrl>
+          <IISUrl>http://localhost:52031/VPMobileService</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

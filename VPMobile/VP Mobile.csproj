@@ -74,30 +74,13 @@
     <Reference Include="Esri.ArcGISRuntime, Version=100.3.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
       <HintPath>packages\Esri.ArcGISRuntime.WPF.100.3.0\lib\net461\Esri.ArcGISRuntime.dll</HintPath>
     </Reference>
-    <Reference Include="GeoAPI, Version=1.1.0.0, Culture=neutral, PublicKeyToken=a1a0da7def465678, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\TFS_Working\Binaries\GeoAPI.dll</HintPath>
-    </Reference>
-    <Reference Include="GTG.Utilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\TFS_Working\Binaries\GTG.Utilities.dll</HintPath>
+    <Reference Include="GTG.Utilities">
+      <HintPath>..\..\Binaries\GTG.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
-      <HintPath>..\..\..\Binaries\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="MapSuiteCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=0828af5241fb4207, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\TFS_Working\Binaries\MapSuiteCore.DLL</HintPath>
-    </Reference>
-    <Reference Include="MapSuiteRouting, Version=5.0.0.0, Culture=neutral, PublicKeyToken=0828af5241fb4207, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\TFS_Working\Binaries\MapSuiteRouting.dll</HintPath>
+      <HintPath>..\..\Binaries\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="NetTopologySuite, Version=1.7.3.31740, Culture=neutral, PublicKeyToken=f580a05016ebada1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\TFS_Working\Binaries\NetTopologySuite.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -354,7 +337,7 @@
       <Name>VPMobileObjects</Name>
     </ProjectReference>
     <ProjectReference Include="..\VPMobileRuntime\VPMobileRuntime100-1-0.csproj">
-      <Project>{3866AE07-22E3-4BC6-8C56-B895491C6BD6}</Project>
+      <Project>{3866ae07-22e3-4bc6-8c56-b895491c6bd6}</Project>
       <Name>VPMobileRuntime100-1-0</Name>
     </ProjectReference>
   </ItemGroup>
