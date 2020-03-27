@@ -86,7 +86,7 @@ namespace VPMobileObjects
 
 		public void SetStandardizerInfo(gtgStandardizerInfo StandardizerInfo)//, ILog logFile)
 		{
-            const string LOCAL = _MOD + "SetStandardizerInfo(gtgStandardizerInfo, ILog)";
+            //const string LOCAL = _MOD + "SetStandardizerInfo(gtgStandardizerInfo, ILog)";
 			try
 			{
                 //UTIL.Utilities.LogMessage(logFile, UTIL.Utilities.LogType.Info,
@@ -156,7 +156,7 @@ namespace VPMobileObjects
 						m_Street_Type.Add( sr.SearchPattern, sr.ReplaceWith );
 				}
 			}
-			catch ( Exception ex )
+			catch ( Exception )
 			{
                 //UTIL.Utilities.LogMessage(logFile, UTIL.Utilities.LogType.Error,
                 //                          String.Format(Constants.FMT_ERROR_IN, LOCAL), ex);
@@ -165,7 +165,7 @@ namespace VPMobileObjects
 
 		public gtgStandardizeResult StandardizeAddress(string strAddress)//, ILog logFile)
 		{
-            const string LOCAL = _MOD + "StandardizeAddress(string, ILog) ";
+            //const string LOCAL = _MOD + "StandardizeAddress(string, ILog) ";
 
             var ret = new gtgStandardizeResult();
 			string tmpString = null;
@@ -236,7 +236,7 @@ namespace VPMobileObjects
 						bStreetTypeFound = true;
 						break;
 					}
-					catch( IndexOutOfRangeException ex)
+					catch( IndexOutOfRangeException )
                     {
                         //UTIL.Utilities.LogMessage(logFile, UTIL.Utilities.LogType.Error,
                         //                          String.Format(Constants.FMT_ERROR_IN, LOCAL), ex);
@@ -266,7 +266,7 @@ namespace VPMobileObjects
 							endIndex = i - 1;
 							break;
 						}
-						catch ( IndexOutOfRangeException ex)
+						catch ( IndexOutOfRangeException )
                         {
                             //UTIL.Utilities.LogMessage(logFile, UTIL.Utilities.LogType.Error,
                             //                          String.Format(Constants.FMT_ERROR_IN, LOCAL), ex);
@@ -286,7 +286,7 @@ namespace VPMobileObjects
 							                 + ( m_Ordinal_Number.TryGetValue( strSplit[i], out tmpString ) ? tmpString : strSplit[i] );
 						}
 					}
-					catch ( IndexOutOfRangeException ex)
+					catch ( IndexOutOfRangeException )
 					{
                         //UTIL.Utilities.LogMessage(logFile, UTIL.Utilities.LogType.Error,
                         //                          String.Format(Constants.FMT_ERROR_IN, LOCAL), ex);
@@ -312,7 +312,7 @@ namespace VPMobileObjects
 						startIndex = i + 1;
 						break;
 					}
-					catch ( IndexOutOfRangeException ex)
+					catch ( IndexOutOfRangeException )
 					{
                         //UTIL.Utilities.LogMessage(logFile, UTIL.Utilities.LogType.Error,
                         //                          String.Format(Constants.FMT_ERROR_IN, LOCAL), ex);
@@ -328,7 +328,7 @@ namespace VPMobileObjects
 						ret.Unit = strSplit[i];
 						break;
 					}
-					catch ( IndexOutOfRangeException ex)
+					catch ( IndexOutOfRangeException )
 					{
                         //UTIL.Utilities.LogMessage(logFile, UTIL.Utilities.LogType.Error,
                         //                          String.Format(Constants.FMT_ERROR_IN, LOCAL), ex);
@@ -357,7 +357,7 @@ namespace VPMobileObjects
 				}
                 ret.StreetNameSoundex = GenerateSoundexCode(ret.StreetName);//, logFile );
 			}
-			catch ( Exception ex )
+			catch ( Exception )
 			{
                 //UTIL.Utilities.LogMessage(logFile, UTIL.Utilities.LogType.Error,
                 //                          String.Format(Constants.FMT_ERROR_IN, LOCAL), ex);
@@ -367,7 +367,7 @@ namespace VPMobileObjects
 
 		public string GenerateSoundexCode(string StreetNameToCode)//, ILog logFile)
 		{
-            const string LOCAL = _MOD + "StandardizeAddress(string, ILog) ";
+            //const string LOCAL = _MOD + "StandardizeAddress(string, ILog) ";
 
             if (string.IsNullOrWhiteSpace(StreetNameToCode))
             {
@@ -437,7 +437,7 @@ namespace VPMobileObjects
 
 		public List<gtgGeocodeCandidate> GenerateCandidates(gtgStandardizeResult AddressIn)//, ILog logFile)
         {
-            const string LOCAL = _MOD + "GenerateCandidates(gtgStandardizeResult, ILog) ";
+            //const string LOCAL = _MOD + "GenerateCandidates(gtgStandardizeResult, ILog) ";
             var ret = new List<gtgGeocodeCandidate>();
 			try
 			{
@@ -481,7 +481,7 @@ namespace VPMobileObjects
 					}
 				}
 			}
-			catch ( Exception ex )
+			catch ( Exception )
 			{
                 //UTIL.Utilities.LogMessage(logFile, UTIL.Utilities.LogType.Error,
                 //                          String.Format(Constants.FMT_ERROR_IN, LOCAL), ex);
