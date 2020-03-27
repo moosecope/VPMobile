@@ -3,19 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Web;
 using System.Text;
 using System.Xml.Serialization;
-
-using log4net;
 using VPMobileObjects;
 using GTG.Utilities;
 using GTG.Utilities.Routing;
 
 namespace VPMobileService
-{    
+{
     public class VPMobileService : IVPMobileService
     {
         private const string _CONFIGS = "Configs";

@@ -1,32 +1,41 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1062
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VPMobileService", "VPMobileService.csproj", "{9F0D4985-7D24-4785-A780-A536215C221D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VPMobileObjects", "..\VPMobileObjects\VPMobileObjects.csproj", "{77A1CD56-7013-4D61-AE53-E363A6655254}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9F0D4985-7D24-4785-A780-A536215C221D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9F0D4985-7D24-4785-A780-A536215C221D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F0D4985-7D24-4785-A780-A536215C221D}.Debug|x86.ActiveCfg = Debug|x86
+		{9F0D4985-7D24-4785-A780-A536215C221D}.Debug|x86.Build.0 = Debug|x86
 		{9F0D4985-7D24-4785-A780-A536215C221D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F0D4985-7D24-4785-A780-A536215C221D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F0D4985-7D24-4785-A780-A536215C221D}.Release|x86.ActiveCfg = Release|x86
+		{9F0D4985-7D24-4785-A780-A536215C221D}.Release|x86.Build.0 = Release|x86
+		{77A1CD56-7013-4D61-AE53-E363A6655254}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77A1CD56-7013-4D61-AE53-E363A6655254}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77A1CD56-7013-4D61-AE53-E363A6655254}.Debug|x86.ActiveCfg = Debug|x86
+		{77A1CD56-7013-4D61-AE53-E363A6655254}.Debug|x86.Build.0 = Debug|x86
+		{77A1CD56-7013-4D61-AE53-E363A6655254}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77A1CD56-7013-4D61-AE53-E363A6655254}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77A1CD56-7013-4D61-AE53-E363A6655254}.Release|x86.ActiveCfg = Release|x86
+		{77A1CD56-7013-4D61-AE53-E363A6655254}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 1
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://10.1.100.62:8080/tfs/defaultcollection
-		SccProjectUniqueName0 = VPMobileService.csproj
-		SccProjectName0 = .
-		SccAuxPath0 = http://10.1.100.62:8080/tfs/defaultcollection
-		SccLocalPath0 = .
-		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AEA1250F-994F-410E-BA6C-45C9A335BF6D}
 	EndGlobalSection
 EndGlobal
