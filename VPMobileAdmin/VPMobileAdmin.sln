@@ -4,13 +4,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28307.1062
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VPMobileAdmin", "VPMobileAdmin.csproj", "{59A2821F-E506-49B6-A31B-62B39A2FB154}"
-	ProjectSection(ProjectDependencies) = postProject
-		{49CB4417-F292-4869-A552-C49F272036E6} = {49CB4417-F292-4869-A552-C49F272036E6}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VPMobileObjects", "..\VPMobileObjects\VPMobileObjects.csproj", "{77A1CD56-7013-4D61-AE53-E363A6655254}"
-EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "VPCoreService", "..\..\VP Viewer\VPCoreService\VPCoreService\VPCoreService.vbproj", "{49CB4417-F292-4869-A552-C49F272036E6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTG.ArcGIS.Rest", "..\..\GTG.ArcGIS.Rest\GTG.ArcGIS.Rest\GTG.ArcGIS.Rest.csproj", "{B6351CAA-81B4-42E7-B09F-6C37631A1B53}"
 EndProject
@@ -38,14 +33,6 @@ Global
 		{77A1CD56-7013-4D61-AE53-E363A6655254}.Release|Any CPU.Build.0 = Release|Any CPU
 		{77A1CD56-7013-4D61-AE53-E363A6655254}.Release|x86.ActiveCfg = Release|x86
 		{77A1CD56-7013-4D61-AE53-E363A6655254}.Release|x86.Build.0 = Release|x86
-		{49CB4417-F292-4869-A552-C49F272036E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{49CB4417-F292-4869-A552-C49F272036E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{49CB4417-F292-4869-A552-C49F272036E6}.Debug|x86.ActiveCfg = Debug|x86
-		{49CB4417-F292-4869-A552-C49F272036E6}.Debug|x86.Build.0 = Debug|x86
-		{49CB4417-F292-4869-A552-C49F272036E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{49CB4417-F292-4869-A552-C49F272036E6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{49CB4417-F292-4869-A552-C49F272036E6}.Release|x86.ActiveCfg = Release|x86
-		{49CB4417-F292-4869-A552-C49F272036E6}.Release|x86.Build.0 = Release|x86
 		{B6351CAA-81B4-42E7-B09F-6C37631A1B53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B6351CAA-81B4-42E7-B09F-6C37631A1B53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6351CAA-81B4-42E7-B09F-6C37631A1B53}.Debug|x86.ActiveCfg = Debug|Any CPU
