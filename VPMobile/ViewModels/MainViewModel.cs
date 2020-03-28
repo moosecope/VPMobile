@@ -1,12 +1,7 @@
 using Esri.ArcGISRuntime.Data;
 using Esri.ArcGISRuntime.Geometry;
-using Esri.ArcGISRuntime.Location;
 using Esri.ArcGISRuntime.Mapping;
-using Esri.ArcGISRuntime.Security;
 using Esri.ArcGISRuntime.Symbology;
-using Esri.ArcGISRuntime.Tasks;
-using Esri.ArcGISRuntime.Tasks.NetworkAnalysis;
-using Esri.ArcGISRuntime.Tasks.Offline;
 using Esri.ArcGISRuntime.UI;
 using Esri.ArcGISRuntime.UI.Controls;
 using GTG.Utilities;
@@ -25,7 +20,6 @@ using System.Security.Principal;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
 using System.Windows.Input;
@@ -736,7 +730,8 @@ namespace VP_Mobile.ViewModels
 
                     RoutingGraphicsLayer.Graphics.Clear();
 
-                    var symbol = new SimpleLineSymbol(SimpleLineSymbolStyle.Solid, Color.Red, 5);
+                    System.Windows.Media.Color colorRed = System.Windows.Media.Color.FromArgb(Color.Red.A, Color.Red.R, Color.Red.G, Color.Red.B);
+                    var symbol = new SimpleLineSymbol(SimpleLineSymbolStyle.Solid, colorRed, 5);
                     RoutingGraphicsLayer.Graphics.Add(new Esri.ArcGISRuntime.UI.Graphic(line, new Dictionary<String, object> { { "IsRouting", true } }, symbol));
                     MapView.SetViewpointGeometryAsync(line.Extent, 50);
 
@@ -772,13 +767,14 @@ namespace VP_Mobile.ViewModels
                 if (geom == null || geom.IsEmpty)
                     return;
 
+                System.Windows.Media.Color colorRed = System.Windows.Media.Color.FromArgb(Color.Red.A, Color.Red.R, Color.Red.G, Color.Red.B);
                 Symbol symbol = null;
                 if (geom is MapPoint)
-                    symbol = new SimpleMarkerSymbol(SimpleMarkerSymbolStyle.Diamond, Color.Red, Config.MapIconSize / 2);
+                symbol = new SimpleMarkerSymbol(SimpleMarkerSymbolStyle.Diamond, colorRed, Config.MapIconSize / 2);
                 else if (geom is Polygon)
-                    symbol = new SimpleFillSymbol(SimpleFillSymbolStyle.ForwardDiagonal, Color.Red, new SimpleLineSymbol(SimpleLineSymbolStyle.Dash, Color.Red, 2));
+                    symbol = new SimpleFillSymbol(SimpleFillSymbolStyle.ForwardDiagonal, colorRed, new SimpleLineSymbol(SimpleLineSymbolStyle.Dash, colorRed, 2));
                 else
-                    symbol = new SimpleLineSymbol(SimpleLineSymbolStyle.Solid, Color.Red, 2);
+                    symbol = new SimpleLineSymbol(SimpleLineSymbolStyle.Solid, colorRed, 2);
 
                 if (routing)
                 {
@@ -1098,15 +1094,18 @@ namespace VP_Mobile.ViewModels
             try
             {
                 Logging.LogMethodCall(MethodBase.GetCurrentMethod().DeclaringType.Name);
-                if (MapView.BackgroundGrid.Color != Color.Black)
+                System.Windows.Media.Color colorClear = System.Windows.Media.Color.FromArgb(Color.Transparent.A, Color.Transparent.R, Color.Transparent.G, Color.Transparent.B);
+                System.Windows.Media.Color colorBlack = System.Windows.Media.Color.FromArgb(Color.Black.A, Color.Black.R, Color.Black.G, Color.Black.B);
+                if (MapView.BackgroundGrid.Color != colorBlack)
                 {
-                    MapView.BackgroundGrid.Color = Color.Black;
-                    MapView.BackgroundGrid.GridLineColor = Color.Transparent;
+                    MapView.BackgroundGrid.Color = colorBlack;
+                    MapView.BackgroundGrid.GridLineColor = colorClear;
                 }
                 else
                 {
-                    MapView.BackgroundGrid.Color = Color.White;
-                    MapView.BackgroundGrid.GridLineColor = Color.Transparent;
+                    System.Windows.Media.Color colorWhite = System.Windows.Media.Color.FromArgb(Color.White.A, Color.White.R, Color.White.G, Color.White.B);
+                    MapView.BackgroundGrid.Color = colorWhite;
+                    MapView.BackgroundGrid.GridLineColor = colorClear;
                 }
             }
             catch (Exception ex)
@@ -2006,7 +2005,8 @@ namespace VP_Mobile.ViewModels
                 avlGroupsRenderer.FieldNames.Add(AvlViewModel.GROUP_ID);
 
                 // Set the default region fill symbol (transparent with no outline) for regions not explicitly defined in the renderer
-                var defaultFillSymbol = new SimpleMarkerSymbol(SimpleMarkerSymbolStyle.Circle, Color.Red, 25);
+                System.Windows.Media.Color colorRed = System.Windows.Media.Color.FromArgb(Color.Red.A, Color.Red.R, Color.Red.G, Color.Red.B);
+                var defaultFillSymbol = new SimpleMarkerSymbol(SimpleMarkerSymbolStyle.Circle, colorRed, 25);
                 avlGroupsRenderer.DefaultSymbol = defaultFillSymbol;
                 //regionRenderer.DefaultLabel = "Other";
 
