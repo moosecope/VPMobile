@@ -93,8 +93,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y /R "$(TargetDir)$(ProjectName).dll" "C:\TFS_Working\Binaries\*.*"
-xcopy /Y /R "$(TargetDir)$(ProjectName).pdb" "C:\TFS_Working\Binaries\*.*"
+    <PostBuildEvent>
 </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
