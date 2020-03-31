@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VP Mobile", "VP Mobile.cspr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VPMobileRuntime100-1-0", "..\VPMobileRuntime\VPMobileRuntime100-1-0.csproj", "{3866AE07-22E3-4BC6-8C56-B895491C6BD6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VPMobileSplashScreen", "..\VPMobileSplashScreen\VPMobileSplashScreen.csproj", "{4AFA4D70-5B39-4C01-92DD-9E52ABF61FBF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,14 @@ Global
 		{3866AE07-22E3-4BC6-8C56-B895491C6BD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3866AE07-22E3-4BC6-8C56-B895491C6BD6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3866AE07-22E3-4BC6-8C56-B895491C6BD6}.Release|x86.ActiveCfg = Release|x86
+		{4AFA4D70-5B39-4C01-92DD-9E52ABF61FBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AFA4D70-5B39-4C01-92DD-9E52ABF61FBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AFA4D70-5B39-4C01-92DD-9E52ABF61FBF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4AFA4D70-5B39-4C01-92DD-9E52ABF61FBF}.Debug|x86.Build.0 = Debug|Any CPU
+		{4AFA4D70-5B39-4C01-92DD-9E52ABF61FBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AFA4D70-5B39-4C01-92DD-9E52ABF61FBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AFA4D70-5B39-4C01-92DD-9E52ABF61FBF}.Release|x86.ActiveCfg = Release|Any CPU
+		{4AFA4D70-5B39-4C01-92DD-9E52ABF61FBF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
