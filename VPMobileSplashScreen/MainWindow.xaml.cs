@@ -328,7 +328,7 @@ namespace VPMobileSplashScreen
             {
                 if (!_closing)
                 {
-                    MessageBox.Show("Could not find main executable at" + exePath);
+                    MessageBox.Show("Could not find main executable at " + exePath);
                     Dispatcher.Invoke(() => Close());
                 }
             }

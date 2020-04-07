@@ -79,9 +79,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ArcGisServiceInfo">
-      <HintPath>..\..\Binaries\ArcGisServiceInfo.dll</HintPath>
-    </Reference>
     <Reference Include="C1.WPF.4, Version=4.0.20142.409, Culture=neutral, PublicKeyToken=2aa4ec5576d6c3ce, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Binaries\C1.WPF.4.dll</HintPath>
@@ -276,6 +273,10 @@
     <ProjectReference Include="..\..\GTG.ArcGIS.Rest\GTG.ArcGIS.Rest\GTG.ArcGIS.Rest.csproj">
       <Project>{b6351caa-81b4-42e7-b09f-6c37631a1b53}</Project>
       <Name>GTG.ArcGIS.Rest</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Miscellaneous\ArcGisServiceInfo\ArcGisServiceInfo\ArcGisServiceInfo.csproj">
+      <Project>{6c2734e2-20b0-4e27-8436-36a7e3aea7f4}</Project>
+      <Name>ArcGisServiceInfo</Name>
     </ProjectReference>
     <ProjectReference Include="..\VPMobileObjects\VPMobileObjects.csproj">
       <Project>{77A1CD56-7013-4D61-AE53-E363A6655254}</Project>

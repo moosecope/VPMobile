@@ -33,6 +33,7 @@ using VPMobileObjects;
 using VPMobileRuntime100_1_0.Model;
 using GTG.Utilities.Routing;
 using System.Net.Sockets;
+using Esri.ArcGISRuntime;
 
 namespace VP_Mobile.ViewModels
 {
@@ -1372,44 +1373,57 @@ namespace VP_Mobile.ViewModels
 					foreach (var tbl in e.Database.GeodatabaseFeatureTables.Reverse())
                     {
                         var layer = new FeatureLayer(tbl);
-                        await layer.LoadAsync();
-                        if(layer.FullExtent != null)
+                        bool layerLoaded = false;
+                        try
                         {
-                            if (_initialExtent != null)
+                            await layer.LoadAsync();
+                            layerLoaded = true;
+                        }
+                        catch (ArcGISRuntimeException arcex)
+                        {
+                            var message = String.Format("Error loading geodatabase layer '{0}'\n{1}", layer.Name, arcex.Message);
+                            MessageBox.Show(message);
+                        }
+                        if (layerLoaded)
+                        {
+                            if (layer.FullExtent != null)
                             {
-                                if (_initialExtent.SpatialReference == null || _initialExtent.SpatialReference == layer.FullExtent.SpatialReference)
-                                    _initialExtent = GeometryEngine.Union(_initialExtent, layer.FullExtent);
-                                else
+                                if (_initialExtent != null)
                                 {
-                                    var projectedExtent = GeometryEngine.Project(layer.FullExtent, _initialExtent.SpatialReference);
-                                    _initialExtent = GeometryEngine.Union(_initialExtent, projectedExtent);
+                                    if (_initialExtent.SpatialReference == null || _initialExtent.SpatialReference == layer.FullExtent.SpatialReference)
+                                        _initialExtent = GeometryEngine.Union(_initialExtent, layer.FullExtent);
+                                    else
+                                    {
+                                        var projectedExtent = GeometryEngine.Project(layer.FullExtent, _initialExtent.SpatialReference);
+                                        _initialExtent = GeometryEngine.Union(_initialExtent, projectedExtent);
+                                    }
                                 }
+                                else
+                                    _initialExtent = layer.FullExtent;
+                            }
+
+                            if (tbl.LoadStatus == Esri.ArcGISRuntime.LoadStatus.Loaded)
+                            {
+                                layer.Name = tbl.LayerInfo.ServiceLayerName;
+                                layer.IsVisible = tbl.LayerInfo.DefaultVisibility;
                             }
                             else
-                                _initialExtent = layer.FullExtent;
-                        }
-
-                        if (tbl.LoadStatus == Esri.ArcGISRuntime.LoadStatus.Loaded)
-                        {
-                            layer.Name = tbl.LayerInfo.ServiceLayerName;
-                            layer.IsVisible = tbl.LayerInfo.DefaultVisibility;
-                        }
-                        else
-                        {
-                            tbl.LoadStatusChanged += (sendr, ev) =>
                             {
-                                if (ev.Status == Esri.ArcGISRuntime.LoadStatus.Loaded)
+                                tbl.LoadStatusChanged += (sendr, ev) =>
                                 {
-                                    layer.Name = tbl.LayerInfo.ServiceLayerName;
-                                    layer.IsVisible = tbl.LayerInfo.DefaultVisibility;
-                                }
-                            };
-                        }
+                                    if (ev.Status == Esri.ArcGISRuntime.LoadStatus.Loaded)
+                                    {
+                                        layer.Name = tbl.LayerInfo.ServiceLayerName;
+                                        layer.IsVisible = tbl.LayerInfo.DefaultVisibility;
+                                    }
+                                };
+                            }
 
-                        CacheLayers[e.CacheName].Add(layer);
-                        if (_initialFeatureLayers == null)
-                            _initialFeatureLayers = new List<FeatureLayer>();
-                        _initialFeatureLayers.Add(layer);
+                            CacheLayers[e.CacheName].Add(layer);
+                            if (_initialFeatureLayers == null)
+                                _initialFeatureLayers = new List<FeatureLayer>();
+                            _initialFeatureLayers.Add(layer);
+                        }
                     }
                 }
                 else
@@ -1437,28 +1451,40 @@ namespace VP_Mobile.ViewModels
                         FeatureLayer layer = new FeatureLayer(table);
 
                         //load the layer
-                        await layer.LoadAsync();
-
-                        if (table.LoadStatus == Esri.ArcGISRuntime.LoadStatus.Loaded)
+                        bool layerLoaded = false;
+                        try
                         {
-                            layer.Name = table.LayerInfo.ServiceLayerName;
-                            layer.IsVisible = table.LayerInfo.DefaultVisibility;
+                            await layer.LoadAsync();
+                            layerLoaded = true;
                         }
-                        else
+                        catch (ArcGISRuntimeException arcex)
                         {
-                            table.LoadStatusChanged += (sendr, ev) =>
+                            var message = String.Format("Error loading geodatabase layer '{0}'\n{1}", layer.Name, arcex.Message);
+                            MessageBox.Show(message);
+                        }
+                        if (layerLoaded)
+                        {
+                            if (table.LoadStatus == Esri.ArcGISRuntime.LoadStatus.Loaded)
                             {
-                                if (ev.Status == Esri.ArcGISRuntime.LoadStatus.Loaded)
+                                layer.Name = table.LayerInfo.ServiceLayerName;
+                                layer.IsVisible = table.LayerInfo.DefaultVisibility;
+                            }
+                            else
+                            {
+                                table.LoadStatusChanged += (sendr, ev) =>
                                 {
-                                    layer.Name = table.LayerInfo.ServiceLayerName;
-                                    layer.IsVisible = table.LayerInfo.DefaultVisibility;
-                                }
-                            };
-                        }
+                                    if (ev.Status == Esri.ArcGISRuntime.LoadStatus.Loaded)
+                                    {
+                                        layer.Name = table.LayerInfo.ServiceLayerName;
+                                        layer.IsVisible = table.LayerInfo.DefaultVisibility;
+                                    }
+                                };
+                            }
 
-                        CacheLayers[e.CacheName].Add(layer);
-                        // Add the new layer to the map
-                        Map.OperationalLayers.Add(layer);
+                            CacheLayers[e.CacheName].Add(layer);
+                            // Add the new layer to the map
+                            Map.OperationalLayers.Add(layer);
+                        }
                     }
                     Legend.Layers = Map.AllLayers;
                 }
