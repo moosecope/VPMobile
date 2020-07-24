@@ -1190,7 +1190,10 @@ namespace VP_Mobile.ViewModels
                         AvlGraphicsLayer.LabelsEnabled = UserSettings.AvlLabel;
                         break;
                     case nameof(UserSettings.GpsLocLabel):
-                        GpsGraphicsLayer.LabelsEnabled = UserSettings.GpsLocLabel;
+                        if (GpsGraphicsLayer != null)
+                        {
+                            GpsGraphicsLayer.LabelsEnabled = UserSettings.GpsLocLabel;
+                        }
                         break;
                     case nameof(UserSettings.GpsKeepNorth):
                         if (UserSettings.GpsKeepNorth)
