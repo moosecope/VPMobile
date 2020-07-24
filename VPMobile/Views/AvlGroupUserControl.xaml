@@ -38,7 +38,7 @@
                         <Border CornerRadius="10" Background="{StaticResource ResourceKey=VPGray}" BorderBrush="{StaticResource ResourceKey=VPTeal}" BorderThickness="3" MouseUp="Unit_MouseUp" DataContext="{Binding}" Margin="0,3">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="{Binding GroupImage}" Width="40" Height="40" Margin="7,7,2,7"/>
-                                <Label Content="{Binding UnitID}" VerticalContentAlignment="Center" Margin="2,7,7,7"/>
+                                <Label Content="{Binding UnitLabel}" VerticalContentAlignment="Center" Margin="2,7,7,7"/>
                             </StackPanel>
                         </Border>
                     </DataTemplate>

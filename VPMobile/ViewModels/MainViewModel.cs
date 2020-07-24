@@ -1381,8 +1381,8 @@ namespace VP_Mobile.ViewModels
                         }
                         catch (ArcGISRuntimeException arcex)
                         {
-                            var message = String.Format("Error loading geodatabase layer '{0}'\n{1}", layer.Name, arcex.Message);
-                            MessageBox.Show(message);
+                            var message = String.Format("Error loading geodatabase layer '{0}'", layer.Name);
+                            Logging.LogMessage(Logging.LogType.Warn, message, arcex);
                         }
                         if (layerLoaded)
                         {
@@ -1459,8 +1459,8 @@ namespace VP_Mobile.ViewModels
                         }
                         catch (ArcGISRuntimeException arcex)
                         {
-                            var message = String.Format("Error loading geodatabase layer '{0}'\n{1}", layer.Name, arcex.Message);
-                            MessageBox.Show(message);
+                            var message = String.Format("Error loading geodatabase layer '{0}'", layer.Name);
+                            Logging.LogMessage(Logging.LogType.Warn, message, arcex);
                         }
                         if (layerLoaded)
                         {
@@ -1572,6 +1572,8 @@ namespace VP_Mobile.ViewModels
                     ZoomToFullExtent();
                     IncidentViewModel.FirstDisplayItemKey = Config.FirstIncidentDisplayField;
                     IncidentViewModel.SecondDisplayItemKey = Config.SecondIncidentDisplayField;
+                    Logging.LogMessage(Logging.LogType.Info, String.Format("AVL Config ID = {0}", Config.AvlID));
+                    Logging.LogMessage(Logging.LogType.Info, String.Format("Dispatch Config ID = {0}", Config.DispatchID));
                     VPService.GetAvlSettingsAsync(Config.AvlID);
                     VPService.GetDispatchSettingsAsync(Config.DispatchID);
                     StartGPSListener();

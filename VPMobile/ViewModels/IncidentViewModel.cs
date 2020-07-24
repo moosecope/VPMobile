@@ -163,7 +163,10 @@ namespace VP_Mobile.ViewModels
                     return _graphic;
                 if (UnGeocoded)
                     return null;
-                _graphic = new Graphic(new MapPoint(Longitude, Latitude, SpatialReferences.Wgs84), this);
+
+                MapPoint pt = new MapPoint(Longitude, Latitude, SpatialReferences.Wgs84);
+                _graphic = new Graphic();
+                _graphic.Geometry = pt;
                 return _graphic;
             }
         }

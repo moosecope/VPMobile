@@ -36,12 +36,37 @@ namespace VP_Mobile.ViewModels
             }
         }
 
+        public String UnitLabel
+        {
+            get
+            {
+                String ret = UnitAlias;
+                if (ret == null || ret.Length == 0)
+                {
+                    ret = UnitID;
+                }
+                return ret;
+            }
+        }
+
         public String UnitID
         {
             get
             {
                 object ret;
                 if (base.TryGetValue(UNIT_ID, out ret))
+                    return ret?.ToString();
+                else
+                    return String.Empty;
+            }
+        }
+
+        public String UnitAlias
+        {
+            get
+            {
+                object ret;
+                if (base.TryGetValue(UNIT_ALIAS, out ret))
                     return ret?.ToString();
                 else
                     return String.Empty;
@@ -110,6 +135,7 @@ namespace VP_Mobile.ViewModels
         public const String GPS_SYMBOL_JSON = "{\"type\" : \"esriPMS\", \"imageData\" : \"iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwwAADsMBx2+oZAAAABl0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuNUmK/OAAAAToSURBVFhHrVdrTJtVGMZN3aIz8dcyL5lRpzEmZG7GZdMlJi4EjQacl81CaQeMy7h2DDYKUqClUCDdJpdOYcVoCgMK2ZSuICwbLjYxOIFlCQRiIoNt/5YsRuOS/Xh838Pp19Z+o+XyJE++c95z3ud7er5zTs+JiQQADcQ5ImznzgnWdXWhltnZGSDVOc7tEheJGcSdUideCC4HlPQuEdlVVUK8vqcHTRcuoG1wEB0jI+j1+QQ7hodFjNu4T0NvLyqdTk6FlGKtN2RRHdThEVkU4DoLMIrq6+GdmMDY/DzGb9/G77duCV5bWBD017lt7OZNDN+4AXt3t8zGc0TW2iKlWXurLAZAwQ2yKMCdiEjQ63GGftVvJMwviGSAOXHnDoYnJ5FRXs4SjB1SVoDqIT82DNRhHbGUMw+mp6PN7V62gcs0CrllZSzBeElKq4M6hDmi2A7O1GZmrtiAoaKCJRjbiBuldDio8f/fn0cgnYhDOTkrNlBsNrMEgw1skvLhoMaHjsCBVXyCQlo9ErulbHSgBJ61eZypWcUnOFZTwxKMWCkdHSiBP4GFM7VHjggDV6Zn0egeQfHXfUixnEVcoR1xBQFqKVZ8pg+Oi1fxyx9/CgOldXUswdglpdVBHdTmgEBWSQkqHU68k3cSryaZo+Le/FNo81yCkfaPICx7EsI7Ngbz6dP4WH8YewzN2GVwRMW3j7YgQZeGY5WV6PR6WYoRNs8UUOOjsihA9fWcYaQh/CQ5GZ9l5KPA0oDPG3oQX+tekh/V9eK4vQXZ5Rbs12iQe+IESylbsiqo/TFZ9L9cLEFGUlYW3j9sxL6sarSf/wEu3zj6x6fhmZ7D9F9/Y/affzE4M4/z12fR/et1uH66hMSSk9CZmlFstUqVyAaU4eGyZA4RSdnZwsDLB00o6PBgdGoK1+g/YeruXczdv4+FBw8wc+8eJmj2+2ZnYXT/jO2ZdmGgpLaWJRgaKR8Cii++lwtKRYLqG4hIoVXgN7C/ZTCiAe33PsVAqc3GEoy9UpZ118liiAEe9uBR2Eh8hbhWBp6R0oGXEpQyFZ4QBQmq8yp4mrgmBqSsAFVVDSiT0A+KbSKu1Qg8JWXVQR0UV35Q7FnO5K14pQaCVsFbUjZ6UNLjnPnFKgwYqqtZgqE2wmE/OgTU4UXO1OfnKwbMnQMRDdh/vKIY+NJuZwmG2ghHNPAhZ+rz8pBpasSnBjMaXW5UdA3B0ncZZ0fH4aXNaGhmAc6rk7D2j6KqexjN/R7oKk7B/G3fkgYeCn9nem7mTD6Q1DkcOGqxYXdBE97M/WpJ7ilsRpm9CZ1DQygJHEiWZUAcTun5AmdqaSvmv+NYfQ1eS7FGxdhD1sUjmcnEEoz1QjwIFFM3RQ1ip6Ln4iSUJyKtxYmtiaVRMdX2nTCQazSyBCOZGGKC6sqOGAJq2CyffI6DTo4An4haPaMoau1BwvEm7MtrwHu5AXKM21oHRpUTUUGpOFgznhTiQaBYxBH4gDNT6c9opUeyIAPbhHgQKLb0vKAOr3OmJi1txQYyDAaWYDwvZaMHJcVxZmJKCppcrmUbGKDTVGpREUswEqVs9KCk+MVc0D5gEpfTNlpagnQRZX5Dxy0//TFu5wuqqb1dZguIOwE9o1+ODEo4wNlswEqjEHw9V67okiIm2210MQ0yoJNyKoiJ+Q8vKUUw8KR8SgAAAABJRU5ErkJggg==\", \"contentType\" : \"png\", \"color\" : null, \"width\" : 30, \"height\" : 30, \"angle\" : 0}";
         public const String GROUP_ID = "GroupID";
         public const String UNIT_ID = "UnitID";
+        public const String UNIT_ALIAS = "UnitAlias";
         public const String LATITUDE = "Lat";
         public const String LONGITUDE = "Lon";
         #endregion
