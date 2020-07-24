@@ -2023,7 +2023,7 @@ namespace VP_Mobile.ViewModels
                 AvlGraphicsLayer = new GraphicsOverlay();
                 AvlGraphicsLayer.RenderingMode = GraphicsRenderingMode.Dynamic;
                 
-                AvlGraphicsLayer.LabelDefinitions.Add(Labels.BuildLabelWithId(AvlViewModel.UNIT_LABEL, AvlViewModel.LATITUDE, AvlViewModel.LONGITUDE, Config.AvlLocOption, Config.MapTextSize, Color.DarkOrange, Color.DarkSlateGray));                
+                AvlGraphicsLayer.LabelDefinitions.Add(Labels.BuildLabelWithId(AvlViewModel.UNIT_LABEL, AvlViewModel.UNIT_ALIAS, AvlViewModel.LATITUDE, AvlViewModel.LONGITUDE, Config.AvlLocOption, Config.MapTextSize, Color.DarkOrange, Color.DarkSlateGray));                
                 AvlGraphicsLayer.LabelsEnabled = UserSettings.AvlLabel;
 
                 // Create a new unique value renderer
@@ -2163,7 +2163,7 @@ namespace VP_Mobile.ViewModels
                 DispatchGraphicsLayer = new GraphicsOverlay();
                 DispatchGraphicsLayer.RenderingMode = GraphicsRenderingMode.Dynamic;
 
-                DispatchGraphicsLayer.LabelDefinitions.Add(Labels.BuildLabelWithId(IncidentViewModel.FirstDisplayItemKey, IncidentViewModel.LATITUDE, IncidentViewModel.LONGITUDE, false, Config.MapTextSize, Color.Aqua, Color.DarkSlateGray));
+                DispatchGraphicsLayer.LabelDefinitions.Add(Labels.BuildLabelWithId(IncidentViewModel.FirstDisplayItemKey, IncidentViewModel.FirstDisplayItemKey, IncidentViewModel.LATITUDE, IncidentViewModel.LONGITUDE, false, Config.MapTextSize, Color.Aqua, Color.DarkSlateGray));
                 DispatchGraphicsLayer.LabelsEnabled = UserSettings.IncidentLabel;
 
                 // Create a new unique value renderer

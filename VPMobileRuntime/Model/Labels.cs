@@ -10,7 +10,7 @@ namespace VPMobileRuntime100_1_0.Model
 {
     public static class Labels
     {
-        public static LabelDefinition BuildLabelWithId(String idKey, String latKey, String longKey, bool displayLocation, int textSize, Color textColor, Color haloColor)
+        public static LabelDefinition BuildLabelWithId(String idKey, String labelKey, String latKey, String longKey, bool displayLocation, int textSize, Color textColor, Color haloColor)
         {
             var textColorValues = new int[] { textColor.R, textColor.G, textColor.B, textColor.A };
             var haloColorValues = new int[] { haloColor.R, haloColor.G, haloColor.B, haloColor.A };
@@ -18,7 +18,7 @@ namespace VPMobileRuntime100_1_0.Model
             var labelJson = @"{
       ""labelExpression"": ""[" + idKey + @"]"",
       ""labelExpressionInfo"": {
-                    ""expression"": ""return $feature[\""" + idKey + @"\""]" + (displayLocation ? @" + \"" Lat: \"" + $feature[\""" + latKey + @"\""] + \"" Long: \"" + $feature[\""" + longKey + @"\""]" : String.Empty) + @";""
+                    ""expression"": ""return $feature[\""" + labelKey + @"\""]" + (displayLocation ? @" + \"" Lat: \"" + $feature[\""" + latKey + @"\""] + \"" Long: \"" + $feature[\""" + longKey + @"\""]" : String.Empty) + @";""
       },
       ""useCodedValues"": false,
       ""maxScale"": 0,
