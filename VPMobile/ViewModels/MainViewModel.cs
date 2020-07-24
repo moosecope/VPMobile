@@ -2023,7 +2023,7 @@ namespace VP_Mobile.ViewModels
                 AvlGraphicsLayer = new GraphicsOverlay();
                 AvlGraphicsLayer.RenderingMode = GraphicsRenderingMode.Dynamic;
                 
-                AvlGraphicsLayer.LabelDefinitions.Add(Labels.BuildLabelWithId(AvlViewModel.UNIT_ID, AvlViewModel.LATITUDE, AvlViewModel.LONGITUDE, Config.AvlLocOption, Config.MapTextSize, Color.DarkOrange, Color.DarkSlateGray));                
+                AvlGraphicsLayer.LabelDefinitions.Add(Labels.BuildLabelWithId(AvlViewModel.UNIT_LABEL, AvlViewModel.LATITUDE, AvlViewModel.LONGITUDE, Config.AvlLocOption, Config.MapTextSize, Color.DarkOrange, Color.DarkSlateGray));                
                 AvlGraphicsLayer.LabelsEnabled = UserSettings.AvlLabel;
 
                 // Create a new unique value renderer
