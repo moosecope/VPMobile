@@ -1187,7 +1187,10 @@ namespace VP_Mobile.ViewModels
                 switch (e.PropertyName)
                 {
                     case nameof(UserSettings.AvlLabel):
-                        AvlGraphicsLayer.LabelsEnabled = UserSettings.AvlLabel;
+                        if (AvlGraphicsLayer != null)
+                        {
+                            AvlGraphicsLayer.LabelsEnabled = UserSettings.AvlLabel;
+                        }
                         break;
                     case nameof(UserSettings.GpsLocLabel):
                         if (GpsGraphicsLayer != null)
@@ -1202,7 +1205,10 @@ namespace VP_Mobile.ViewModels
                             MapView.SetViewpointRotationAsync(0);
                         break;
                     case nameof(UserSettings.IncidentLabel):
-                        DispatchGraphicsLayer.LabelsEnabled = UserSettings.IncidentLabel;
+                        if (DispatchGraphicsLayer != null)
+                        {
+                            DispatchGraphicsLayer.LabelsEnabled = UserSettings.IncidentLabel;
+                        }
                         break;
                     default:
                         break;
@@ -2250,11 +2256,11 @@ namespace VP_Mobile.ViewModels
                 }
                 NetworkDisconnect = false;
 
-                foreach (var grphc in DispatchGraphicsLayer.Graphics)
+                foreach (var incidentInfo in IncidentsList.Incidents)
                 {
-                    if (!grphc.Attributes.ContainsKey("oldValue"))
-                        grphc.Attributes.Add("oldValue", true);
+                    incidentInfo.isCurrent = false;
                 }
+
                 Application.Current.Dispatcher.Invoke((Action)(() =>
                 {
                     //var strDictionary = e.Result.Aggregate(String.Empty, (seed, diction) =>
@@ -2266,50 +2272,59 @@ namespace VP_Mobile.ViewModels
                     //     return seed + ",\r\n{" + diction.Aggregate(String.Empty, (sd, kval) => String.IsNullOrWhiteSpace(sd) ? "\r\n" + kval.Key + ": " + kval.Value.ToString() : sd + ",\r\n" + kval.Key + ": " + kval.Value.ToString()) + "\r\n}";
                     // });
                     //MessageBox.Show(strDictionary);
-                    foreach (var incidentInfo in e.Result)
+                    if (e.Result.Length > 0)
                     {
-                        //var display = incidentInfo.Aggregate(String.Empty, (sd, kval) => String.IsNullOrWhiteSpace(sd) ? "\r\n" + kval.Key + ": " + kval.Value.ToString() : sd + ",\r\n" + kval.Key + ": " + kval.Value.ToString());
-                        //MessageBox.Show(display);
-                        var incident = new IncidentViewModel(incidentInfo);
-                        var callType = IncidentsList.CallTypes.FirstOrDefault(type => type.CallTypeValue == incident.CallType);
-                        if (callType == null) continue;
-                        incident.CallTypeImage = callType.OriginalCallImage;
-                        incident.AssignedIncident = !String.IsNullOrWhiteSpace(UserSettings.UnitNumber) && UserSettings.UnitNumber == incident.UnitID;
-                        var oldIncident = IncidentsList.Incidents.FirstOrDefault(unt => unt.UniqueID.ToString().Equals(incident.UniqueID.ToString()));
-                        if (oldIncident != null)
+                        foreach (var incidentInfo in e.Result)
                         {
-                            IncidentsList.Incidents.Remove(oldIncident);
-                            if(!oldIncident.UnGeocoded)
-                                DispatchGraphicsLayer.Graphics.Remove(oldIncident.Graphic);
-                            incident.Selected = oldIncident.Selected;
-                        }
-                        else if (UserSettings.AutoRoute && incident.AssignedIncident && !incident.UnGeocoded)
-                        {
-                            RouteTo(new Models.Point
+                            //var display = incidentInfo.Aggregate(String.Empty, (sd, kval) => String.IsNullOrWhiteSpace(sd) ? "\r\n" + kval.Key + ": " + kval.Value.ToString() : sd + ",\r\n" + kval.Key + ": " + kval.Value.ToString());
+                            //MessageBox.Show(display);
+                            var incident = new IncidentViewModel(incidentInfo);
+                            var callType = IncidentsList.CallTypes.FirstOrDefault(type => type.CallTypeValue == incident.CallType);
+                            if (callType == null) continue;
+                            incident.CallTypeImage = callType.OriginalCallImage;
+                            incident.AssignedIncident = !String.IsNullOrWhiteSpace(UserSettings.UnitNumber) && UserSettings.UnitNumber == incident.UnitID;
+                            var oldIncident = IncidentsList.Incidents.FirstOrDefault(unt => unt.UniqueID.ToString().Equals(incident.UniqueID.ToString()));
+                            if (oldIncident != null)
                             {
-                                Latitude = incident.Latitude,
-                                Longitude = incident.Longitude
-                            });
+                                IncidentsList.Incidents.Remove(oldIncident);
+                                if (!oldIncident.UnGeocoded)
+                                    DispatchGraphicsLayer.Graphics.Remove(oldIncident.Graphic);
+                                incident.Selected = oldIncident.Selected;
+                            }
+                            else if (UserSettings.AutoRoute && incident.AssignedIncident && !incident.UnGeocoded)
+                            {
+                                RouteTo(new Models.Point
+                                {
+                                    Latitude = incident.Latitude,
+                                    Longitude = incident.Longitude
+                                });
+                            }
+                            incident.isCurrent = true;
+                            IncidentsList.Incidents.Add(incident);
+                            if (callType.CallTypeActive && !incident.UnGeocoded)
+                                DispatchGraphicsLayer.Graphics.Add(incident.Graphic);
                         }
-                        IncidentsList.Incidents.Add(incident);
-                        if (callType.CallTypeActive && !incident.UnGeocoded)
-                            DispatchGraphicsLayer.Graphics.Add(incident.Graphic);
+                    }
+                    else
+                    {
+                        // no incidents are active at the moment - clear the list and the graphics
+                        IncidentsList.Incidents.Clear();
+                        DispatchGraphicsLayer.Graphics.Clear();
                     }
                 }));
 
-                var oldUnits = DispatchGraphicsLayer.Graphics.Where(grphc => grphc.Attributes.ContainsKey("oldValue")).ToList();
-                foreach (var old in oldUnits)
+                Application.Current.Dispatcher.Invoke((Action)(() =>
                 {
-                    DispatchGraphicsLayer.Graphics.Remove(old);
-                    Application.Current.Dispatcher.Invoke((Action)(() =>
+                    var oldIncidents = IncidentsList.Incidents.Where(incident => !incident.isCurrent).ToList();
+                    foreach (var oldIncident in oldIncidents)
                     {
-                        var oldincidents = IncidentsList.Incidents.Where(ncdnt => ncdnt.UniqueID.ToString().Equals(old.Attributes[IncidentViewModel.UNIQUE_ID])).ToList();
-                        foreach (var item in oldincidents)
+                        if (oldIncident.Graphic != null)
                         {
-                            IncidentsList.Incidents.Remove(item);
+                            DispatchGraphicsLayer.Graphics.Remove(oldIncident.Graphic);
                         }
-                    }));
-                }
+                        IncidentsList.Incidents.Remove(oldIncident);
+                    }
+                }));
             }
             catch (Exception ex)
             {

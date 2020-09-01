@@ -29,6 +29,8 @@ namespace VP_Mobile.ViewModels
         #region public properties
         public BitmapSource CallTypeImage { get; set; }
 
+        public bool isCurrent { get; set; } = true;
+
         public String FirstDisplayItem
         {
             get
