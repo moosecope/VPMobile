@@ -2031,8 +2031,8 @@ namespace VP_Mobile.ViewModels
                     MapView.GraphicsOverlays.Remove(AvlGraphicsLayer);
                 AvlGraphicsLayer = new GraphicsOverlay();
                 AvlGraphicsLayer.RenderingMode = GraphicsRenderingMode.Dynamic;
-                
-                AvlGraphicsLayer.LabelDefinitions.Add(Labels.BuildLabelWithId(AvlViewModel.UNIT_LABEL, AvlViewModel.UNIT_ALIAS, AvlViewModel.LATITUDE, AvlViewModel.LONGITUDE, Config.AvlLocOption, Config.MapTextSize, Color.DarkOrange, Color.DarkSlateGray));                
+
+                AvlGraphicsLayer.LabelDefinitions.Add(Labels.BuildLabelWithId(AvlViewModel.UNIT_LABEL, AvlViewModel.UNIT_ALIAS, AvlViewModel.LATITUDE, AvlViewModel.LONGITUDE, Config.AvlLocOption, Config.MapTextSize, Color.DarkOrange, Color.DarkSlateGray));
                 AvlGraphicsLayer.LabelsEnabled = UserSettings.AvlLabel;
 
                 // Create a new unique value renderer
@@ -2197,14 +2197,7 @@ namespace VP_Mobile.ViewModels
                 }
                                 
                 DispatchGraphicsLayer.Renderer = callTypesRenderer;
-                if(MapView.GraphicsOverlays.Any(ovrly => ovrly == AvlGraphicsLayer))
-                {
-                    MapView.GraphicsOverlays.Remove(AvlGraphicsLayer);
-                    MapView.GraphicsOverlays.Add(DispatchGraphicsLayer);
-                    MapView.GraphicsOverlays.Add(AvlGraphicsLayer);
-                }
-                else
-                    MapView.GraphicsOverlays.Add(DispatchGraphicsLayer);
+                MapView.GraphicsOverlays.Add(DispatchGraphicsLayer);
 
                 _incidentTimer = new System.Timers.Timer(Convert.ToDouble(UserSettings.IncidentRefreshInterval));
                 _incidentTimer.Elapsed += IncidentTimer_Elapsed;
@@ -2280,6 +2273,7 @@ namespace VP_Mobile.ViewModels
                             //MessageBox.Show(display);
                             var incident = new IncidentViewModel(incidentInfo);
                             var callType = IncidentsList.CallTypes.FirstOrDefault(type => type.CallTypeValue == incident.CallType);
+                            Logging.LogMessage(Logging.LogType.Info, String.Format("Incident {0} CallType = {1}", incident.UniqueID, incident.CallType));
                             if (callType == null) continue;
                             incident.CallTypeImage = callType.OriginalCallImage;
                             incident.AssignedIncident = !String.IsNullOrWhiteSpace(UserSettings.UnitNumber) && UserSettings.UnitNumber == incident.UnitID;

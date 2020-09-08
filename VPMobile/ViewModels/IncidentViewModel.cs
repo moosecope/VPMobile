@@ -91,6 +91,14 @@ namespace VP_Mobile.ViewModels
             }
         }
 
+        public String Call_Type
+        {
+            get
+            {
+                return CallType;
+            }
+        }
+
         public DateTime RecordTime
         {
             get
@@ -163,12 +171,11 @@ namespace VP_Mobile.ViewModels
             {
                 if (_graphic != null)
                     return _graphic;
+
                 if (UnGeocoded)
                     return null;
 
-                MapPoint pt = new MapPoint(Longitude, Latitude, SpatialReferences.Wgs84);
-                _graphic = new Graphic();
-                _graphic.Geometry = pt;
+                _graphic = new Graphic(new MapPoint(Longitude, Latitude, SpatialReferences.Wgs84), this);
                 return _graphic;
             }
         }

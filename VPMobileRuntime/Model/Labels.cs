@@ -18,7 +18,7 @@ namespace VPMobileRuntime100_1_0.Model
             var labelJson = @"{
       ""labelExpression"": ""[" + idKey + @"]"",
       ""labelExpressionInfo"": {
-                    ""expression"": ""return $feature[\""" + labelKey + @"\""]" + (displayLocation ? @" + \"" Lat: \"" + $feature[\""" + latKey + @"\""] + \"" Long: \"" + $feature[\""" + longKey + @"\""]" : String.Empty) + @";""
+            ""expression"": ""return $feature[\""" + labelKey + @"\""]" + (displayLocation ? @" + \"" Lat: \"" + $feature[\""" + latKey + @"\""] + \"" Long: \"" + $feature[\""" + longKey + @"\""]" : String.Empty) + @";""
       },
       ""useCodedValues"": false,
       ""maxScale"": 0,
