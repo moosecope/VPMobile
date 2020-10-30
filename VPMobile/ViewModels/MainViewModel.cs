@@ -34,6 +34,9 @@ using VPMobileRuntime100_1_0.Model;
 using GTG.Utilities.Routing;
 using System.Net.Sockets;
 using Esri.ArcGISRuntime;
+using System.Globalization;
+using System.Management;
+using Microsoft.Win32;
 
 namespace VP_Mobile.ViewModels
 {
@@ -42,6 +45,8 @@ namespace VP_Mobile.ViewModels
     /// </summary>
     public class MainViewModel : INotifyPropertyChanged
     {
+        public ManagementEventWatcher watcher;
+
         #region public
         #region public constructor
         public MainViewModel()
@@ -1085,6 +1090,111 @@ namespace VP_Mobile.ViewModels
             catch (Exception ex)
             {
                 var message = "Error toggling base maps";
+                ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, message, ex);
+                Logging.LogMessage(Logging.LogType.Error, message, ex);
+            }
+        }
+
+        private const string RegistryKeyPath = @"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize";
+
+        private const string RegistryValueName = "AppsUseLightTheme";
+
+        private enum WindowsTheme
+        {
+            Light,
+            Dark
+        }
+
+        public void ThemeWatcherEventHandler(object sender, EventArrivedEventArgs e)
+        {
+            WindowsTheme newWindowsTheme = GetWindowsTheme();
+            // React to new theme
+            if (newWindowsTheme == WindowsTheme.Light)
+            {
+                Application.Current.Dispatcher.Invoke(SetLightMode);
+            }
+            else
+            {
+                Application.Current.Dispatcher.Invoke(SetDarkMode);
+            }
+        }
+
+        public void WatchTheme()
+        {
+            var currentUser = WindowsIdentity.GetCurrent();
+            string query = string.Format(
+                CultureInfo.InvariantCulture,
+                @"SELECT * FROM RegistryValueChangeEvent WHERE Hive = 'HKEY_USERS' AND KeyPath = '{0}\\{1}' AND ValueName = '{2}'",
+                currentUser.User.Value,
+                RegistryKeyPath.Replace(@"\", @"\\"),
+                RegistryValueName);
+
+            try
+            {
+                watcher = new ManagementEventWatcher(query);
+                watcher.EventArrived += ThemeWatcherEventHandler;
+
+                // Start listening for events
+                watcher.Start();
+            }
+            catch (Exception)
+            {
+                // This can fail on Windows 7
+            }
+
+            WindowsTheme initialTheme = GetWindowsTheme();
+        }
+
+        private static WindowsTheme GetWindowsTheme()
+        {
+            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(RegistryKeyPath))
+            {
+                object registryValueObject = key?.GetValue(RegistryValueName);
+                if (registryValueObject == null)
+                {
+                    return WindowsTheme.Light;
+                }
+
+                int registryValue = (int)registryValueObject;
+
+                return registryValue > 0 ? WindowsTheme.Light : WindowsTheme.Dark;
+            }
+        }
+
+        private void SetLightMode()
+        {
+            try
+            {
+                Logging.LogMethodCall(MethodBase.GetCurrentMethod().DeclaringType.Name);
+                System.Windows.Media.Color colorClear = System.Windows.Media.Color.FromArgb(Color.Transparent.A, Color.Transparent.R, Color.Transparent.G, Color.Transparent.B);
+                System.Windows.Media.Color colorWhite = System.Windows.Media.Color.FromArgb(Color.White.A, Color.White.R, Color.White.G, Color.White.B);
+                MapView.BackgroundGrid.Color = colorWhite;
+                MapView.BackgroundGrid.GridLineColor = colorClear;
+            }
+            catch (Exception ex)
+            {
+                var message = "Error setting light mode";
+                ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, message, ex);
+                Logging.LogMessage(Logging.LogType.Error, message, ex);
+            }
+        }
+
+        private void SetDarkMode()
+        {
+            try
+            {
+                Logging.LogMethodCall(MethodBase.GetCurrentMethod().DeclaringType.Name);
+                System.Windows.Media.Color colorClear = System.Windows.Media.Color.FromArgb(Color.Transparent.A, Color.Transparent.R, Color.Transparent.G, Color.Transparent.B);
+                System.Windows.Media.Color colorBlack = System.Windows.Media.Color.FromArgb(Color.Black.A, Color.Black.R, Color.Black.G, Color.Black.B);
+                if (MapView.BackgroundGrid.Color != colorBlack)
+                {
+                    MapView.BackgroundGrid.Color = colorBlack;
+                    MapView.BackgroundGrid.GridLineColor = colorClear;
+                }
+            }
+            catch (Exception ex)
+            {
+                var message = "Error toggling night mode";
                 ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, message, ex);
                 Logging.LogMessage(Logging.LogType.Error, message, ex);
             }

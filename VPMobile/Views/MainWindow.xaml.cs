@@ -51,7 +51,11 @@ namespace VP_Mobile.Views
                 {
                     var old = DataContext as MainViewModel;
                     if (old != null)
+                    {
+                        // remove any event handlers from the old context
                         old.PropertyChanged -= ViewModel_PropertyChanged;
+                        old.watcher.EventArrived -= old.ThemeWatcherEventHandler;
+                    }
                     value.RoutingGraphicsLayer = RoutingGraphicsLayer;
                     value.LocationGraphicsLayer = LocationGraphicsLayer;
                     value.Legend = ucLegend.ViewModel;
@@ -68,8 +72,10 @@ namespace VP_Mobile.Views
                     ucSelectConfig.ViewModel.MainView = value;
                     value.MapView = mvwMain;
                     value.PropertyChanged += ViewModel_PropertyChanged;
+                    value.WatchTheme();
                     DataContext = value;
                     NotifyPropertyChanged();
+
                 }
                 catch (Exception ex)
                 {
