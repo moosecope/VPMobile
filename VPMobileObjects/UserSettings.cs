@@ -16,6 +16,7 @@ namespace VPMobileObjects
         public UserSettings()
         {
             IncidentZoomWidth = 2000;
+            IdentifyTolerance = 50;
             IncidentRefreshInterval = 10000;
             GpsKeepNorth = false;
             AvlLocLabel = false;
@@ -33,6 +34,9 @@ namespace VPMobileObjects
 
         [XmlElement(ElementName = "IncidentZoomWidth")]
         public int IncidentZoomWidth { get; set; }
+
+        [XmlElement(ElementName = "IdentifyTolerance")]
+        public int IdentifyTolerance { get; set; }
 
         [XmlElement(ElementName = "IncidentRefreshInterval")]
         public int IncidentRefreshInterval { get; set; }

@@ -127,6 +127,20 @@ namespace VP_Mobile.ViewModels
             }
         }
 
+        public int IdentifyTolerance
+        {
+            get
+            {
+                return Properties.Settings.Default.IdentifyTolerance;
+            }
+            set
+            {
+                Properties.Settings.Default.IdentifyTolerance = value;
+                Properties.Settings.Default.Save();
+                NotifyPropertyChanged();
+            }
+        }
+
         public int IncidentRefreshInterval
         {
             get

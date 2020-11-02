@@ -7,7 +7,7 @@
              xmlns:viewModels="clr-namespace:VP_Mobile.ViewModels"
              xmlns:converters="clr-namespace:VP_Mobile.Converters"
              d:DataContext="{d:DesignInstance viewModels:UserSettingsViewModel}"
-             mc:Ignorable="d" Height="451" Width="250">
+             mc:Ignorable="d" Height="523" Width="250">
     <UserControl.Resources>
         <converters:BoolToVisibilityConverter x:Key="boolConverter" />
         <converters:NullToVisibilityConverter x:Key="nullConverter" />
@@ -29,6 +29,8 @@
                 <RowDefinition Height="41"/>
                 <RowDefinition Height="41"/>
                 <RowDefinition Height="41"/>
+                <RowDefinition Height="21"/>
+                <RowDefinition Height="51"/>
                 <RowDefinition Height="21"/>
                 <RowDefinition Height="51"/>
                 <RowDefinition Height="21"/>
@@ -70,6 +72,12 @@
             </Slider>
             <Label Content="Incident Zoom Width:" Margin="10,0" Padding="0" VerticalContentAlignment="Bottom" Grid.Row="7" Grid.ColumnSpan="2"/>
             <Slider Grid.ColumnSpan="2" Value="{Binding IncidentZoomWidth, Mode=TwoWay}" Margin="10,0" Grid.Row="8" TickPlacement="BottomRight" Maximum="5000" Minimum="1000" LargeChange="500" TickFrequency="500" SmallChange="100">
+                <Slider.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
+                </Slider.LayoutTransform>
+            </Slider>
+            <Label Content="Identify Radius:" Margin="10,0" Padding="0" VerticalContentAlignment="Bottom" Grid.Row="11" Grid.ColumnSpan="2"/>
+            <Slider Grid.ColumnSpan="2" Value="{Binding IdentifyTolerance, Mode=TwoWay}" Margin="10,0" Grid.Row="12" TickPlacement="BottomRight" Maximum="100" Minimum="0" LargeChange="10" TickFrequency="10" SmallChange="1">
                 <Slider.LayoutTransform>
                     <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
                 </Slider.LayoutTransform>

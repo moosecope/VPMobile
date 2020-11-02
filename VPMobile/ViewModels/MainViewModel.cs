@@ -945,15 +945,16 @@ namespace VP_Mobile.ViewModels
                 {
                     _identifying = false;
                     NotifyPropertyChanged("FindToolImage");
-                // identify all layers in the MapView, passing the tap point, tolerance, types to return, and max results
-                IReadOnlyList<IdentifyLayerResult> idLayerResults = await MapView.IdentifyLayersAsync(MapView.LocationToScreen(point), 20, false, 5);
+                    // identify all layers in the MapView, passing the tap point, tolerance, types to return, and max results
+
+                    IReadOnlyList<IdentifyLayerResult> idLayerResults = await MapView.IdentifyLayersAsync(MapView.LocationToScreen(point), UserSettings.IdentifyTolerance, false, 5);
                     var ret = new ObservableCollection<Feature>();
 
-                // iterate the results for each layer
-                foreach (IdentifyLayerResult idResults in idLayerResults)
+                    // iterate the results for each layer
+                    foreach (IdentifyLayerResult idResults in idLayerResults)
                     {
-                    // get the layer identified and cast it to FeatureLayer
-                    FeatureLayer idLayer = idResults.LayerContent as FeatureLayer;
+                        // get the layer identified and cast it to FeatureLayer
+                        FeatureLayer idLayer = idResults.LayerContent as FeatureLayer;
                         if (!Config.MapServices.Any(srvc => srvc.IdentifyingLayers.Contains(((GeodatabaseFeatureTable)idLayer.FeatureTable).LayerInfo.ServiceLayerName)))
                             continue;
 

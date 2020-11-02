@@ -44,5 +44,8 @@
     <Setting Name="LastConfig" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="IdentifyTolerance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
