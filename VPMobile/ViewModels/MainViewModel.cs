@@ -765,7 +765,7 @@ namespace VP_Mobile.ViewModels
             }
         }
 
-        public void Show(Esri.ArcGISRuntime.Geometry.Geometry geom, bool routing)
+        public void Show(Esri.ArcGISRuntime.Geometry.Geometry geom, bool routing, bool zoom = true)
         {
             try
             {
@@ -776,7 +776,7 @@ namespace VP_Mobile.ViewModels
                 System.Windows.Media.Color colorRed = System.Windows.Media.Color.FromArgb(Color.Red.A, Color.Red.R, Color.Red.G, Color.Red.B);
                 Symbol symbol = null;
                 if (geom is MapPoint)
-                symbol = new SimpleMarkerSymbol(SimpleMarkerSymbolStyle.Diamond, colorRed, Config.MapIconSize / 2);
+                    symbol = new SimpleMarkerSymbol(SimpleMarkerSymbolStyle.Diamond, colorRed, Config.MapIconSize / 2);
                 else if (geom is Polygon)
                     symbol = new SimpleFillSymbol(SimpleFillSymbolStyle.ForwardDiagonal, colorRed, new SimpleLineSymbol(SimpleLineSymbolStyle.Dash, colorRed, 2));
                 else
@@ -794,9 +794,23 @@ namespace VP_Mobile.ViewModels
                 }
 
                 if (geom is MapPoint)
+                {
                     MapView.SetViewpointCenterAsync((MapPoint)geom, 10 * UserSettings.IncidentZoomWidth);
+                }
                 else
-                    MapView.SetViewpointGeometryAsync(geom);
+                {
+                    if (zoom)
+                    {
+                        MapView.SetViewpointGeometryAsync(geom);
+                    }
+                    else
+                    {
+                        if (geom is Polygon)
+                        {
+                            MapView.SetViewpointCenterAsync(GeometryEngine.LabelPoint((Polygon)geom));
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1144,6 +1158,14 @@ namespace VP_Mobile.ViewModels
             }
 
             WindowsTheme initialTheme = GetWindowsTheme();
+            if (initialTheme == WindowsTheme.Light)
+            {
+                SetLightMode();
+            }
+            else
+            {
+                SetDarkMode();
+            }
         }
 
         private static WindowsTheme GetWindowsTheme()

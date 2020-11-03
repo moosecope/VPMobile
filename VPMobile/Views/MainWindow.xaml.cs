@@ -438,7 +438,7 @@ namespace VP_Mobile.Views
             {
                 var border = e.OriginalSource as Border;
                 if (border != null)
-                    ViewModel.Show(((Feature)border.DataContext).Geometry, false);
+                    ViewModel.Show(((Feature)border.DataContext).Geometry, false, false);
             }
             catch (Exception ex)
             {

@@ -70,6 +70,7 @@ namespace VP_Mobile.Views
 
         private void Feature_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            // zoom to the feature
             RaiseEvent(new RoutedEventArgs(IdentifyFeatureEvent, sender));
         }
         #endregion
