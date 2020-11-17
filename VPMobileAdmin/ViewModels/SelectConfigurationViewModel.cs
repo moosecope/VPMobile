@@ -151,8 +151,16 @@ namespace VPMobileAdmin.ViewModels
                 var dlgConfiguration = new EditConfigurationWindow();
                 dlgConfiguration.Owner = View;
                 dlgConfiguration.ViewModel.Configuration = e.Result;
+
+               
+                _mobileService.GetConfigsAsync(Guid.NewGuid().ToString());                
+
                 dlgConfiguration.ShowDialog();
-                _mobileService.GetConfigsAsync(Guid.NewGuid().ToString());
+
+               
+
+
+
             }
             catch (Exception ex)
             {

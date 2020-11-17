@@ -30,15 +30,16 @@ namespace VPMobileAdmin.ViewModels
 
         public EditConfigurationViewModel()
         {
+            _mobileService = new VPMobileServiceClient();
+            _mobileService.GetAllRoutingFileInfoCompleted += GetAllRoutingFileInfoCompleted;
+
             PropertyChanged += OnPropertyChanged;
             _configuration = new VPMobileSettings();
-            _mobileService = new VPMobileServiceClient();
             _dispatchSettings = new ObservableCollection<VPMobileDispatchSettings>();
             _visibleDispatchGroups = new ObservableCollection<Pair<bool, VPDispatchIncidentTypeSettings>>();
             _avlSettings = new ObservableCollection<VPMobileAVLSettings>();
             _visibleAvlGroups = new ObservableCollection<Pair<bool, VPAVLGroupInfo>>();
             _routingFiles = new ObservableCollection<RoutingFileInfo>();
-            _mobileService.GetAllRoutingFileInfoCompleted += GetAllRoutingFileInfoCompleted;
             _mobileService.UpdateConfigCompleted += UpdateConfigCompleted;
             _mobileService.AddConfigCompleted += AddConfigCompleted;
             _vpService = new VPMServiceClient();
@@ -63,9 +64,9 @@ namespace VPMobileAdmin.ViewModels
                     _configuration.PropertyChanged += PropertyChanged;
                     _newConfig = String.IsNullOrWhiteSpace(_configuration.Name);
                 }
+                RoutingFiles = new ObservableCollection<RoutingFileInfo>(_mobileService.GetAllRoutingFileInfo(Guid.NewGuid().ToString()));
                 _vpService.GetAvailableAvlSettingsAsync();
                 _vpService.GetAvailableDispatchSettingsAsync();
-                _mobileService.GetAllRoutingFileInfoAsync(Guid.NewGuid().ToString());
 
                 if (!String.IsNullOrWhiteSpace(Properties.Settings.Default.AvlServerAddress))
                     _configuration.AvlServerAddress = Properties.Settings.Default.AvlServerAddress;
@@ -189,6 +190,9 @@ namespace VPMobileAdmin.ViewModels
             set
             {
                 _routingFiles = value;
+
+                AssignRoutingValues();
+                
                 NotifyPropertyChanged();
             }
         }
@@ -204,6 +208,12 @@ namespace VPMobileAdmin.ViewModels
                 Configuration.Routing.ShapeFilePath = value.RoutingFileName;
                 NotifyPropertyChanged();
             }
+        }
+
+        public void AssignRoutingValues()
+        {
+            var FileName= RoutingFiles.FirstOrDefault(rf => rf.RoutingFileName == Configuration.Routing.ShapeFilePath) ?? new RoutingFileInfo();
+            Configuration.Routing.ShapeFilePath = FileName.RoutingFileName;
         }
         #endregion
 
