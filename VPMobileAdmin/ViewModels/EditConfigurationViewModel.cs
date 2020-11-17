@@ -189,10 +189,7 @@ namespace VPMobileAdmin.ViewModels
             get { return _routingFiles; }
             set
             {
-                _routingFiles = value;
-
-                AssignRoutingValues();
-                
+                _routingFiles = value;                
                 NotifyPropertyChanged();
             }
         }
@@ -208,13 +205,7 @@ namespace VPMobileAdmin.ViewModels
                 Configuration.Routing.ShapeFilePath = value.RoutingFileName;
                 NotifyPropertyChanged();
             }
-        }
-
-        public void AssignRoutingValues()
-        {
-            var FileName= RoutingFiles.FirstOrDefault(rf => rf.RoutingFileName == Configuration.Routing.ShapeFilePath) ?? new RoutingFileInfo();
-            Configuration.Routing.ShapeFilePath = FileName.RoutingFileName;
-        }
+        }        
         #endregion
 
         #region public events
