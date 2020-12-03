@@ -628,12 +628,30 @@ namespace VP_Mobile.ViewModels
                 Logging.LogMethodCall(ClassName);
                 if (SelectedAddress == null)
                     return;
-                var pnt = (MapPoint)GeometryEngine.Project((Geometry)SelectedAddress.Candidate.Location, SpatialReferences.Wgs84);
-                MainView.RouteTo(new Models.Point
+
+                MapPoint pnt = null;
+                if (SelectedAddress.Candidate.Location is Polygon)
                 {
-                    Latitude = pnt.Y,
-                    Longitude = pnt.X
-                });
+                    MapPoint startPoint = ((Polygon)SelectedAddress.Candidate.Location).Parts.FirstOrDefault().Points[0];
+                    pnt = (MapPoint)GeometryEngine.Project((Geometry)startPoint, SpatialReferences.Wgs84);
+                }
+                else if (SelectedAddress.Candidate.Location is MapPoint)
+                {
+                    pnt = (MapPoint)GeometryEngine.Project((Geometry)SelectedAddress.Candidate.Location, SpatialReferences.Wgs84);
+
+                }
+                if (pnt != null)
+                {
+                    MainView.RouteTo(new Models.Point
+                    {
+                        Latitude = pnt.Y,
+                        Longitude = pnt.X
+                    });
+                }
+                else
+                {
+                    MessageBox.Show("Unable to get a point from the selected location.");
+                }
             }
             catch (Exception ex)
             {
