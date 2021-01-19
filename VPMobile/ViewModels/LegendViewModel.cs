@@ -127,7 +127,7 @@ namespace VP_Mobile.ViewModels
                 if (_root == null)
                     return;
                 // TraverseLayer is async so the items likely will not load in proper order
-                // ue the passed in order to add them at the correct position
+                // use the passed in order to add them at the correct position
                 if (atIndex < _root.Count)
                 {
                     _root.Insert(atIndex, service);
@@ -163,11 +163,16 @@ namespace VP_Mobile.ViewModels
                     root.SetSymbol(lgnd[0].Symbol);
                 else
                 {
+                    List<String> labelsAdded = new List<String>();
                     foreach (var smbl in lgnd)
                     {
-                        var item = new TreeViewItem(smbl.Name, smbl.Symbol);
-                        item.CanDisable = false;
-                        root.Children.Add(item);
+                        if (!labelsAdded.Contains(smbl.Name))
+                        {
+                            var item = new TreeViewItem(smbl.Name, smbl.Symbol);
+                            item.CanDisable = false;
+                            root.Children.Add(item);
+                            labelsAdded.Add(smbl.Name);
+                        }
                     }
                 }
                 foreach (var subLyr in layer.SublayerContents)
