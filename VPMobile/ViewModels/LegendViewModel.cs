@@ -75,19 +75,22 @@ namespace VP_Mobile.ViewModels
                     if (_root == null)
                     {
                         _root = new ObservableCollection<TreeViewItem>();
+                        int layerOrder = 0;
                         foreach (Layer mapLayer in Layers)
                         {
+                            Console.WriteLine("Processing " + mapLayer.Name + " Load Status = " + mapLayer.LoadStatus);
                             if (mapLayer.LoadStatus == Esri.ArcGISRuntime.LoadStatus.Loaded)
-                                AddLayerTree(mapLayer);
+                                AddLayerTree(mapLayer, layerOrder);
                             else
                             {
                                 mapLayer.LoadStatusChanged += (sender, e) =>
                                 {
                                     if (e.Status != Esri.ArcGISRuntime.LoadStatus.Loaded)
                                         return;
-                                    Application.Current.Dispatcher.Invoke((() => AddLayerTree(mapLayer)));
+                                    Application.Current.Dispatcher.Invoke((() => AddLayerTree(mapLayer, layerOrder)));
                                 };
                             }
+                            layerOrder++;
                         }
                     }
                     return _root;
@@ -107,13 +110,14 @@ namespace VP_Mobile.ViewModels
             }
         }
 
-        private async void AddLayerTree(Layer layer)
+        private async void AddLayerTree(Layer layer, int atIndex)
         {
             try
             {
                 Logging.LogMethodCall(MethodBase.GetCurrentMethod().DeclaringType.Name, () => new Dictionary<String, Object> {
                         { nameof(layer), layer }
                     });
+                Console.WriteLine("Adding " + layer.Name);
                 var service = new TreeViewItem(layer.Name)
                 {
                     CanDisable = true,
@@ -122,7 +126,17 @@ namespace VP_Mobile.ViewModels
                 service = await TraverseLayer(layer, service);
                 if (_root == null)
                     return;
-                _root.Add(service);
+                // TraverseLayer is async so the items likely will not load in proper order
+                // ue the passed in order to add them at the correct position
+                if (atIndex < _root.Count)
+                {
+                    _root.Insert(atIndex, service);
+                }
+                else
+                {
+                    _root.Add(service);
+                }
+                Console.WriteLine("Added " + layer.Name);
             }
             catch (Exception ex)
             {
