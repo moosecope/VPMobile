@@ -268,7 +268,7 @@ namespace VP_Mobile.Views
         private void Identify_Close_MouseUp(object sender, MouseButtonEventArgs e)
         {
             try
-            {
+            {                
                 ViewModel.IdentifyVisible = false;
             }
             catch (Exception ex)

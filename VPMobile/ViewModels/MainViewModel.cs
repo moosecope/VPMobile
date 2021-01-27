@@ -470,8 +470,19 @@ namespace VP_Mobile.ViewModels
                 {
                     _visibleBlades.Clear();
                 }
+                else
+                {
+                    DisableIdentifyMapTap();
+                }
                 NotifyBladesChanged();
             }
+        }
+
+        public void DisableIdentifyMapTap()
+        {
+            _identifying = false;
+            _mapClicked = null;
+            _mapClickedSpatialReference = -1;
         }
 
         private ObservableCollection<RoutingViewModel> _routingInstructions;
@@ -957,7 +968,7 @@ namespace VP_Mobile.ViewModels
                 NotifyPropertyChanged("FindToolImage");
                 _mapClicked = (async (point) =>
                 {
-                    _identifying = false;
+                    //_identifying = false;
                     NotifyPropertyChanged("FindToolImage");
                     // identify all layers in the MapView, passing the tap point, tolerance, types to return, and max results
 
@@ -1856,8 +1867,11 @@ namespace VP_Mobile.ViewModels
                         _mapClicked.Invoke((MapPoint)GeometryEngine.Project(e.Location, new SpatialReference(_mapClickedSpatialReference)));
                     else
                         _mapClicked.Invoke(e.Location);
-                    _mapClicked = null;
-                    _mapClickedSpatialReference = -1;
+                    if (!_identifying)
+                    {
+                        _mapClicked = null;
+                        _mapClickedSpatialReference = -1;
+                    }
                 }
             }
             catch (Exception ex)
