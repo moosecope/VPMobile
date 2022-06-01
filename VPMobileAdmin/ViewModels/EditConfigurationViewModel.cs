@@ -548,6 +548,11 @@ namespace VPMobileAdmin.ViewModels
                     _propertiesChanged = 0;
                     ErrorHelper.OnMessage("Config saved successfully");
                 }
+                else
+                {
+                    ErrorHelper.OnMessage("Config was not able to be saved.");
+                }
+
             }
             catch (Exception ex)
             {
