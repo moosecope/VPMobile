@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace VP_Mobile.VPService {
+namespace VPMobileAdmin.VPCoreService {
     using System.Runtime.Serialization;
     using System;
     
@@ -32,7 +32,7 @@ namespace VP_Mobile.VPService {
         private string ConfigNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private VP_Mobile.VPService.VPAVLGroupInfo[] GroupsField;
+        private VPMobileAdmin.VPCoreService.VPAVLGroupInfo[] GroupsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -84,7 +84,7 @@ namespace VP_Mobile.VPService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public VP_Mobile.VPService.VPAVLGroupInfo[] Groups {
+        public VPMobileAdmin.VPCoreService.VPAVLGroupInfo[] Groups {
             get {
                 return this.GroupsField;
             }
@@ -230,7 +230,7 @@ namespace VP_Mobile.VPService {
         private string IncidentSourceIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private VP_Mobile.VPService.VPDispatchIncidentTypeSettings[] IncidentTypesField;
+        private VPMobileAdmin.VPCoreService.VPDispatchIncidentTypeSettings[] IncidentTypesField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -334,7 +334,7 @@ namespace VP_Mobile.VPService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public VP_Mobile.VPService.VPDispatchIncidentTypeSettings[] IncidentTypes {
+        public VPMobileAdmin.VPCoreService.VPDispatchIncidentTypeSettings[] IncidentTypes {
             get {
                 return this.IncidentTypesField;
             }
@@ -418,35 +418,53 @@ namespace VP_Mobile.VPService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="VPService.IVPMService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="VPCoreService.IVPMService")]
     public interface IVPMService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVPMService/GetAvailableAvlSettings", ReplyAction="http://tempuri.org/IVPMService/GetAvailableAvlSettingsResponse")]
-        VP_Mobile.VPService.VPMobileAVLSettings[] GetAvailableAvlSettings();
+        VPMobileAdmin.VPCoreService.VPMobileAVLSettings[] GetAvailableAvlSettings();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVPMService/GetAvlSettings", ReplyAction="http://tempuri.org/IVPMService/GetAvlSettingsResponse")]
-        VP_Mobile.VPService.VPMobileAVLSettings GetAvlSettings(System.Guid avlId);
+        VPMobileAdmin.VPCoreService.VPMobileAVLSettings GetAvlSettings(System.Guid avlId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVPMService/GetAvailableDispatchSettings", ReplyAction="http://tempuri.org/IVPMService/GetAvailableDispatchSettingsResponse")]
-        VP_Mobile.VPService.VPMobileDispatchSettings[] GetAvailableDispatchSettings();
+        VPMobileAdmin.VPCoreService.VPMobileDispatchSettings[] GetAvailableDispatchSettings();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVPMService/GetDispatchSettings", ReplyAction="http://tempuri.org/IVPMService/GetDispatchSettingsResponse")]
-        VP_Mobile.VPService.VPMobileDispatchSettings GetDispatchSettings(System.Guid dispatchId);
+        VPMobileAdmin.VPCoreService.VPMobileDispatchSettings GetDispatchSettings(System.Guid dispatchId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVPMService/GetDispatchRecordData", ReplyAction="http://tempuri.org/IVPMService/GetDispatchRecordDataResponse")]
         System.Collections.Generic.Dictionary<string, object>[] GetDispatchRecordData(string strID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVPMService/GetAVLLastReportRecordData", ReplyAction="http://tempuri.org/IVPMService/GetAVLLastReportRecordDataResponse")]
         System.Collections.Generic.Dictionary<string, object>[] GetAVLLastReportRecordData(string strID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVPMService/GetAvailableAvlSettings2", ReplyAction="http://tempuri.org/IVPMService/GetAvailableAvlSettings2Response")]
+        VPMobileAdmin.VPCoreService.VPMobileAVLSettings[] GetAvailableAvlSettings2();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVPMService/GetAvlSettings2", ReplyAction="http://tempuri.org/IVPMService/GetAvlSettings2Response")]
+        VPMobileAdmin.VPCoreService.VPMobileAVLSettings GetAvlSettings2(System.Guid avlId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVPMService/GetAvailableDispatchSettings2", ReplyAction="http://tempuri.org/IVPMService/GetAvailableDispatchSettings2Response")]
+        VPMobileAdmin.VPCoreService.VPMobileDispatchSettings[] GetAvailableDispatchSettings2();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVPMService/GetDispatchSettings2", ReplyAction="http://tempuri.org/IVPMService/GetDispatchSettings2Response")]
+        VPMobileAdmin.VPCoreService.VPMobileDispatchSettings GetDispatchSettings2(System.Guid dispatchId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVPMService/GetDispatchRecordData2", ReplyAction="http://tempuri.org/IVPMService/GetDispatchRecordData2Response")]
+        System.Collections.Generic.Dictionary<string, object>[] GetDispatchRecordData2(string strID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVPMService/GetAVLLastReportRecordData2", ReplyAction="http://tempuri.org/IVPMService/GetAVLLastReportRecordData2Response")]
+        System.Collections.Generic.Dictionary<string, object>[] GetAVLLastReportRecordData2(string strID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IVPMServiceChannel : VP_Mobile.VPService.IVPMService, System.ServiceModel.IClientChannel {
+    public interface IVPMServiceChannel : VPMobileAdmin.VPCoreService.IVPMService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class VPMServiceClient : System.ServiceModel.ClientBase<VP_Mobile.VPService.IVPMService>, VP_Mobile.VPService.IVPMService {
+    public partial class VPMServiceClient : System.ServiceModel.ClientBase<VPMobileAdmin.VPCoreService.IVPMService>, VPMobileAdmin.VPCoreService.IVPMService {
         
         public VPMServiceClient() {
         }
@@ -467,19 +485,19 @@ namespace VP_Mobile.VPService {
                 base(binding, remoteAddress) {
         }
         
-        public VP_Mobile.VPService.VPMobileAVLSettings[] GetAvailableAvlSettings() {
+        public VPMobileAdmin.VPCoreService.VPMobileAVLSettings[] GetAvailableAvlSettings() {
             return base.Channel.GetAvailableAvlSettings();
         }
         
-        public VP_Mobile.VPService.VPMobileAVLSettings GetAvlSettings(System.Guid avlId) {
+        public VPMobileAdmin.VPCoreService.VPMobileAVLSettings GetAvlSettings(System.Guid avlId) {
             return base.Channel.GetAvlSettings(avlId);
         }
         
-        public VP_Mobile.VPService.VPMobileDispatchSettings[] GetAvailableDispatchSettings() {
+        public VPMobileAdmin.VPCoreService.VPMobileDispatchSettings[] GetAvailableDispatchSettings() {
             return base.Channel.GetAvailableDispatchSettings();
         }
         
-        public VP_Mobile.VPService.VPMobileDispatchSettings GetDispatchSettings(System.Guid dispatchId) {
+        public VPMobileAdmin.VPCoreService.VPMobileDispatchSettings GetDispatchSettings(System.Guid dispatchId) {
             return base.Channel.GetDispatchSettings(dispatchId);
         }
         
@@ -489,6 +507,30 @@ namespace VP_Mobile.VPService {
         
         public System.Collections.Generic.Dictionary<string, object>[] GetAVLLastReportRecordData(string strID) {
             return base.Channel.GetAVLLastReportRecordData(strID);
+        }
+        
+        public VPMobileAdmin.VPCoreService.VPMobileAVLSettings[] GetAvailableAvlSettings2() {
+            return base.Channel.GetAvailableAvlSettings2();
+        }
+        
+        public VPMobileAdmin.VPCoreService.VPMobileAVLSettings GetAvlSettings2(System.Guid avlId) {
+            return base.Channel.GetAvlSettings2(avlId);
+        }
+        
+        public VPMobileAdmin.VPCoreService.VPMobileDispatchSettings[] GetAvailableDispatchSettings2() {
+            return base.Channel.GetAvailableDispatchSettings2();
+        }
+        
+        public VPMobileAdmin.VPCoreService.VPMobileDispatchSettings GetDispatchSettings2(System.Guid dispatchId) {
+            return base.Channel.GetDispatchSettings2(dispatchId);
+        }
+        
+        public System.Collections.Generic.Dictionary<string, object>[] GetDispatchRecordData2(string strID) {
+            return base.Channel.GetDispatchRecordData2(strID);
+        }
+        
+        public System.Collections.Generic.Dictionary<string, object>[] GetAVLLastReportRecordData2(string strID) {
+            return base.Channel.GetAVLLastReportRecordData2(strID);
         }
     }
 }

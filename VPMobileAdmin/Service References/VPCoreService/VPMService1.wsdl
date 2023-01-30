@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="VPMService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:59492/VPMService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:59492/VPMService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:59492/VPMService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/VPCoreService" />
+      <xsd:import schemaLocation="http://localhost:59492/VPMService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IVPMService_GetAvailableAvlSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableAvlSettings" />
+  </wsdl:message>
+  <wsdl:message name="IVPMService_GetAvailableAvlSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableAvlSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVPMService_GetAvlSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvlSettings" />
+  </wsdl:message>
+  <wsdl:message name="IVPMService_GetAvlSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvlSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVPMService_GetAvailableDispatchSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableDispatchSettings" />
+  </wsdl:message>
+  <wsdl:message name="IVPMService_GetAvailableDispatchSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableDispatchSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVPMService_GetDispatchSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDispatchSettings" />
+  </wsdl:message>
+  <wsdl:message name="IVPMService_GetDispatchSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDispatchSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVPMService_GetDispatchRecordData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDispatchRecordData" />
+  </wsdl:message>
+  <wsdl:message name="IVPMService_GetDispatchRecordData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDispatchRecordDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVPMService_GetAVLLastReportRecordData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAVLLastReportRecordData" />
+  </wsdl:message>
+  <wsdl:message name="IVPMService_GetAVLLastReportRecordData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAVLLastReportRecordDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVPMService_GetAvailableAvlSettings2_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableAvlSettings2" />
+  </wsdl:message>
+  <wsdl:message name="IVPMService_GetAvailableAvlSettings2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableAvlSettings2Response" />
+  </wsdl:message>
+  <wsdl:message name="IVPMService_GetAvlSettings2_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvlSettings2" />
+  </wsdl:message>
+  <wsdl:message name="IVPMService_GetAvlSettings2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvlSettings2Response" />
+  </wsdl:message>
+  <wsdl:message name="IVPMService_GetAvailableDispatchSettings2_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableDispatchSettings2" />
+  </wsdl:message>
+  <wsdl:message name="IVPMService_GetAvailableDispatchSettings2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableDispatchSettings2Response" />
+  </wsdl:message>
+  <wsdl:message name="IVPMService_GetDispatchSettings2_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDispatchSettings2" />
+  </wsdl:message>
+  <wsdl:message name="IVPMService_GetDispatchSettings2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDispatchSettings2Response" />
+  </wsdl:message>
+  <wsdl:message name="IVPMService_GetDispatchRecordData2_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDispatchRecordData2" />
+  </wsdl:message>
+  <wsdl:message name="IVPMService_GetDispatchRecordData2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDispatchRecordData2Response" />
+  </wsdl:message>
+  <wsdl:message name="IVPMService_GetAVLLastReportRecordData2_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAVLLastReportRecordData2" />
+  </wsdl:message>
+  <wsdl:message name="IVPMService_GetAVLLastReportRecordData2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAVLLastReportRecordData2Response" />
+  </wsdl:message>
+  <wsdl:portType name="IVPMService">
+    <wsdl:operation name="GetAvailableAvlSettings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVPMService/GetAvailableAvlSettings" message="tns:IVPMService_GetAvailableAvlSettings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVPMService/GetAvailableAvlSettingsResponse" message="tns:IVPMService_GetAvailableAvlSettings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvlSettings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVPMService/GetAvlSettings" message="tns:IVPMService_GetAvlSettings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVPMService/GetAvlSettingsResponse" message="tns:IVPMService_GetAvlSettings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableDispatchSettings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVPMService/GetAvailableDispatchSettings" message="tns:IVPMService_GetAvailableDispatchSettings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVPMService/GetAvailableDispatchSettingsResponse" message="tns:IVPMService_GetAvailableDispatchSettings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDispatchSettings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVPMService/GetDispatchSettings" message="tns:IVPMService_GetDispatchSettings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVPMService/GetDispatchSettingsResponse" message="tns:IVPMService_GetDispatchSettings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDispatchRecordData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVPMService/GetDispatchRecordData" message="tns:IVPMService_GetDispatchRecordData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVPMService/GetDispatchRecordDataResponse" message="tns:IVPMService_GetDispatchRecordData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAVLLastReportRecordData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVPMService/GetAVLLastReportRecordData" message="tns:IVPMService_GetAVLLastReportRecordData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVPMService/GetAVLLastReportRecordDataResponse" message="tns:IVPMService_GetAVLLastReportRecordData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableAvlSettings2">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVPMService/GetAvailableAvlSettings2" message="tns:IVPMService_GetAvailableAvlSettings2_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVPMService/GetAvailableAvlSettings2Response" message="tns:IVPMService_GetAvailableAvlSettings2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvlSettings2">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVPMService/GetAvlSettings2" message="tns:IVPMService_GetAvlSettings2_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVPMService/GetAvlSettings2Response" message="tns:IVPMService_GetAvlSettings2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableDispatchSettings2">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVPMService/GetAvailableDispatchSettings2" message="tns:IVPMService_GetAvailableDispatchSettings2_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVPMService/GetAvailableDispatchSettings2Response" message="tns:IVPMService_GetAvailableDispatchSettings2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDispatchSettings2">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVPMService/GetDispatchSettings2" message="tns:IVPMService_GetDispatchSettings2_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVPMService/GetDispatchSettings2Response" message="tns:IVPMService_GetDispatchSettings2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDispatchRecordData2">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVPMService/GetDispatchRecordData2" message="tns:IVPMService_GetDispatchRecordData2_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVPMService/GetDispatchRecordData2Response" message="tns:IVPMService_GetDispatchRecordData2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAVLLastReportRecordData2">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVPMService/GetAVLLastReportRecordData2" message="tns:IVPMService_GetAVLLastReportRecordData2_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVPMService/GetAVLLastReportRecordData2Response" message="tns:IVPMService_GetAVLLastReportRecordData2_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:service name="VPMService" />
+</wsdl:definitions>

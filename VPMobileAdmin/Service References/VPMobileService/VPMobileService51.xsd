@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/VPMobileObjects" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VPMobileObjects" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost/VPMobileService/VPMobileService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-  <xs:import schemaLocation="http://localhost/VPMobileService/VPMobileService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://localhost:44324/VPMobileService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:44324/VPMobileService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:complexType name="VPMobileSettings">
     <xs:sequence>
       <xs:element minOccurs="0" name="AvlConfigID" type="ser:guid" />
@@ -73,8 +73,6 @@
     <xs:restriction base="xs:string">
       <xs:enumeration value="SingleField" />
       <xs:enumeration value="SingleHouse" />
-      <xs:enumeration value="SingleRange" />
-      <xs:enumeration value="DualRange" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="GeocoderTypes" nillable="true" type="tns:GeocoderTypes" />
@@ -114,6 +112,7 @@
       <xs:element minOccurs="0" name="ShapeFilePath" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SpeedLimitField" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="StreetNameField" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WKID" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="RoutingSettings" nillable="true" type="tns:RoutingSettings" />

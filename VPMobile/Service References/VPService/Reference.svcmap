@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f1800cb1-4cc2-4585-bf58-75fd53a46346" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
-    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
     <ExcludedTypes />
     <ImportXmlTypes>false</ImportXmlTypes>
@@ -18,15 +18,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost/VPCoreService/VPMService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:59492/VPMService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="VPMService.xsd" MetadataType="Schema" ID="87553419-abdf-4d1b-91bc-cd3dfa795f5f" SourceId="1" SourceUrl="http://localhost/VPCoreService/VPMService.svc?xsd=xsd0" />
-    <MetadataFile FileName="VPMService1.xsd" MetadataType="Schema" ID="10e9647c-280b-4706-b6d5-c774e6e024d6" SourceId="1" SourceUrl="http://localhost/VPCoreService/VPMService.svc?xsd=xsd1" />
-    <MetadataFile FileName="VPMService2.xsd" MetadataType="Schema" ID="a649ab2d-394e-4267-a681-fe2b49c61db4" SourceId="1" SourceUrl="http://localhost/VPCoreService/VPMService.svc?xsd=xsd2" />
-    <MetadataFile FileName="VPMService3.xsd" MetadataType="Schema" ID="5c993c54-070c-4914-972b-10cf3bd36433" SourceId="1" SourceUrl="http://localhost/VPCoreService/VPMService.svc?xsd=xsd3" />
-    <MetadataFile FileName="VPMService.wsdl" MetadataType="Wsdl" ID="e4fc60bb-3a51-4723-b70a-0e3dd46dff4f" SourceId="1" SourceUrl="http://localhost/VPCoreService/VPMService.svc?wsdl" />
-    <MetadataFile FileName="VPMService.disco" MetadataType="Disco" ID="9562b681-550d-46ad-9323-5fb061a09b0d" SourceId="1" SourceUrl="http://localhost/VPCoreService/VPMService.svc?disco" />
+    <MetadataFile FileName="VPMService4.xsd" MetadataType="Schema" ID="9b6dd182-ab54-48a2-ad50-734446f77b04" SourceId="1" SourceUrl="http://localhost:59492/VPMService.svc?xsd=xsd0" />
+    <MetadataFile FileName="VPMService41.xsd" MetadataType="Schema" ID="4262c821-9868-4665-bd9d-8d9d30b1c033" SourceId="1" SourceUrl="http://localhost:59492/VPMService.svc?xsd=xsd1" />
+    <MetadataFile FileName="VPMService42.xsd" MetadataType="Schema" ID="8b8abbdb-a972-431a-b410-9b1b595e2d12" SourceId="1" SourceUrl="http://localhost:59492/VPMService.svc?xsd=xsd2" />
+    <MetadataFile FileName="VPMService43.xsd" MetadataType="Schema" ID="a48dbb1b-c2a7-4e73-b6b1-b278936c9d28" SourceId="1" SourceUrl="http://localhost:59492/VPMService.svc?xsd=xsd3" />
+    <MetadataFile FileName="VPMService1.wsdl" MetadataType="Wsdl" ID="cadcbbfd-3b4c-45bf-ab4d-ab0b4f8a2e1c" SourceId="1" SourceUrl="http://localhost:59492/VPMService.svc?wsdl" />
+    <MetadataFile FileName="VPMService1.disco" MetadataType="Disco" ID="91bb03be-3b66-47c5-aea2-6e8604e4ae1c" SourceId="1" SourceUrl="http://localhost:59492/VPMService.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -127,7 +127,7 @@ namespace VPMobileAdmin.ViewModels
             {
                 if (e.Error != null)
                 {
-                    ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling available dispatch settings", e.Error);
+                    ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error getting configuration", e.Error);
                     return;
                 }
                 if(e.Result != null)
@@ -135,7 +135,7 @@ namespace VPMobileAdmin.ViewModels
             }
             catch (Exception ex)
             {
-                ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling available dispatch settings", ex);
+                ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error getting configuration", ex);
             }
         }
 
@@ -145,7 +145,7 @@ namespace VPMobileAdmin.ViewModels
             {
                 if (e.Error != null)
                 {
-                    ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling available dispatch settings", e.Error);
+                    ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error getting configuration", e.Error);
                     return;
                 }
                 var dlgConfiguration = new EditConfigurationWindow();
@@ -164,7 +164,7 @@ namespace VPMobileAdmin.ViewModels
             }
             catch (Exception ex)
             {
-                ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling available dispatch settings", ex);
+                ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error getting configuration", ex);
             }
         }
 
@@ -174,7 +174,7 @@ namespace VPMobileAdmin.ViewModels
             {
                 if (e.Error != null)
                 {
-                    ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling available dispatch settings", e.Error);
+                    ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error deleting configuration", e.Error);
                     return;
                 }
 
@@ -182,7 +182,7 @@ namespace VPMobileAdmin.ViewModels
             }
             catch (Exception ex)
             {
-                ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling available dispatch settings", ex);
+                ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error deleting configuration", ex);
             }
         }
         #endregion

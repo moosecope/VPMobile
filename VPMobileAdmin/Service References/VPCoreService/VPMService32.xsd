@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/VPCoreService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VPCoreService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:59492/VPMService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfVPMobileAVLSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="VPMobileAVLSettings" nillable="true" type="tns:VPMobileAVLSettings" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVPMobileAVLSettings" nillable="true" type="tns:ArrayOfVPMobileAVLSettings" />
+  <xs:complexType name="VPMobileAVLSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AVLID" type="ser:guid" />
+      <xs:element minOccurs="0" name="ConfigID" type="ser:guid" />
+      <xs:element minOccurs="0" name="ConfigName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Groups" nillable="true" type="tns:ArrayOfVPAVLGroupInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VPMobileAVLSettings" nillable="true" type="tns:VPMobileAVLSettings" />
+  <xs:complexType name="ArrayOfVPAVLGroupInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="VPAVLGroupInfo" nillable="true" type="tns:VPAVLGroupInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVPAVLGroupInfo" nillable="true" type="tns:ArrayOfVPAVLGroupInfo" />
+  <xs:complexType name="VPAVLGroupInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GroupColor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GroupID" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GroupSymbol" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VPAVLGroupInfo" nillable="true" type="tns:VPAVLGroupInfo" />
+  <xs:complexType name="ArrayOfVPMobileDispatchSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="VPMobileDispatchSettings" nillable="true" type="tns:VPMobileDispatchSettings" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVPMobileDispatchSettings" nillable="true" type="tns:ArrayOfVPMobileDispatchSettings" />
+  <xs:complexType name="VPMobileDispatchSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ConfigID" type="ser:guid" />
+      <xs:element minOccurs="0" name="ConfigName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DefaultE911CallSymbol" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DefaultIncidentSymbol" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DispatchID" type="ser:guid" />
+      <xs:element minOccurs="0" name="E911SourceID" type="ser:guid" />
+      <xs:element minOccurs="0" name="IncidentSourceID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IncidentTypes" nillable="true" type="tns:ArrayOfVPDispatchIncidentTypeSettings" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VPMobileDispatchSettings" nillable="true" type="tns:VPMobileDispatchSettings" />
+  <xs:complexType name="ArrayOfVPDispatchIncidentTypeSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="VPDispatchIncidentTypeSettings" nillable="true" type="tns:VPDispatchIncidentTypeSettings" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVPDispatchIncidentTypeSettings" nillable="true" type="tns:ArrayOfVPDispatchIncidentTypeSettings" />
+  <xs:complexType name="VPDispatchIncidentTypeSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IncidentType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Symbol" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VPDispatchIncidentTypeSettings" nillable="true" type="tns:VPDispatchIncidentTypeSettings" />
+</xs:schema>

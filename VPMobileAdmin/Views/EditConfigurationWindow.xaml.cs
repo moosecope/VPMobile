@@ -72,7 +72,14 @@ namespace VPMobileAdmin.Views
 
         private void ThisWindow_Closing(object sender, CancelEventArgs e)
         {
-            e.Cancel = ViewModel.OnClosing();
+            if (ViewModel != null)
+            {
+                e.Cancel = ViewModel.OnClosing();
+            }
+            else
+            {
+                e.Cancel = false;
+            }
         }
 
         #region Services

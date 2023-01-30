@@ -24,6 +24,25 @@ namespace VP_Mobile.ViewModels
         public IncidentViewModel(Dictionary<string, Object> properties) : base(properties)
         {
         }
+
+        public IncidentViewModel(Getdispatchrecorddataresult drec)
+        {
+            // Required Fields
+            this.Add(UNIQUE_ID, drec.Incident_ID);
+            this.Add(UNIT_ID, drec.Incident_ID);
+            this.Add(LATITUDE, drec.Lat);
+            this.Add(CALL_TYPE, drec.Call_Type);
+            this.Add(LONGITUDE, drec.Lon);
+            this.Add(RECORD_TIME, drec.Rec_Time);
+
+            // Additional Data
+            this.Add("Address", drec.Address);
+            this.Add("Address_Apt", drec.Address_Apt);
+            this.Add("Address_Zone", drec.Address_Zone);
+            this.Add("CAD_Time", drec.CAD_Time);
+            this.Add("Call_Status", drec.Call_Status);
+            this.Add("Description", drec.Description);
+        }
         #endregion
 
         #region public properties

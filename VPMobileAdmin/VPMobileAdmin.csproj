@@ -95,6 +95,9 @@
     <Reference Include="Microsoft.Expression.Interactions">
       <HintPath>..\..\..\Binaries\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -128,11 +131,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\VPService\Reference.cs">
+    <Compile Include="Service References\VPCoreService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\DispatchSettings.cs" />
     <Compile Include="ViewModels\SelectCacheLayerViewModel.cs" />
     <Compile Include="ViewModels\SelectConfigurationViewModel.cs" />
     <Compile Include="ViewModels\SelectFieldViewModel.cs" />
@@ -223,7 +227,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\VPMobileObjects.RoutingFileInfo.datasource" />
     <None Include="Properties\DataSources\VPMobileObjects.UpdateFileInfo.datasource" />
@@ -233,6 +239,12 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\VPCoreService\VPMobileAdmin.VPCoreService.VPMobileAVLSettings.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VPCoreService\VPMobileAdmin.VPCoreService.VPMobileDispatchSettings.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\VPMobileService\VPMobileService1.wsdl" />
     <None Include="Service References\VPMobileService\VPMobileService5.xsd">
       <SubType>Designer</SubType>
@@ -249,20 +261,17 @@
     <None Include="Service References\VPMobileService\VPMobileService54.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\VPService\VPMobileAdmin.VPService.VPMobileAVLSettings.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\VPService\VPMobileAdmin.VPService.VPMobileDispatchSettings.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\VPService\VPMService.wsdl" />
-    <None Include="Service References\VPService\VPMService.xsd">
+    <None Include="Service References\VPCoreService\VPMService1.wsdl" />
+    <None Include="Service References\VPCoreService\VPMService3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\VPService\VPMService1.xsd">
+    <None Include="Service References\VPCoreService\VPMService31.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\VPService\VPMService2.xsd">
+    <None Include="Service References\VPCoreService\VPMService32.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VPCoreService\VPMService33.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -285,7 +294,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\VPMobileService\" />
-    <WCFMetadataStorage Include="Service References\VPService\" />
+    <WCFMetadataStorage Include="Service References\VPCoreService\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\VPMobileService\configuration91.svcinfo" />
@@ -300,22 +309,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\VPService\VPMService.disco" />
+    <None Include="Service References\VPCoreService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\VPService\configuration91.svcinfo" />
+    <None Include="Service References\VPCoreService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\VPService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\VPService\Reference.svcmap">
+    <None Include="Service References\VPCoreService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\VPMobileService\VPMobileService1.disco" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="vp_icons_white_bg.ico" />
@@ -331,6 +334,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\VPCoreService\VPMService1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\VPMobileService\VPMobileService1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

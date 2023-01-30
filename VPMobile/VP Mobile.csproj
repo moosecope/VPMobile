@@ -81,6 +81,9 @@
       <HintPath>..\..\Binaries\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -238,6 +241,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Service References\VPService\VPMService1.disco" />
     <Resource Include="Resources\VP Icon-18.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -272,17 +276,17 @@
     <None Include="Service References\VPMobileService\VPMobileService4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\VPService\VPMService.wsdl" />
-    <None Include="Service References\VPService\VPMService.xsd">
+    <None Include="Service References\VPService\VPMService1.wsdl" />
+    <None Include="Service References\VPService\VPMService4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\VPService\VPMService1.xsd">
+    <None Include="Service References\VPService\VPMService41.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\VPService\VPMService2.xsd">
+    <None Include="Service References\VPService\VPMService42.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\VPService\VPMService3.xsd">
+    <None Include="Service References\VPService\VPMService43.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\VPService\VP_Mobile.VPService.VPMobileAVLSettings.datasource">
@@ -293,7 +297,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -316,9 +322,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\VPService\VPMService.disco" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\VPService\configuration91.svcinfo" />

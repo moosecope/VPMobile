@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VPMobileAdmin.StaticHelpers;
 using VPMobileAdmin.VPMobileService;
-using VPMobileAdmin.VPService;
+using VPMobileAdmin.VPCoreService;
 using VPMobileObjects;
 
 using log4net;
@@ -20,6 +20,9 @@ using System.Windows;
 using System.Security.Principal;
 using VPMobileAdmin.Models;
 using ArcGisServiceInfo.ServicesInfo;
+using System.Net;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace VPMobileAdmin.ViewModels
 {
@@ -42,9 +45,13 @@ namespace VPMobileAdmin.ViewModels
             _routingFiles = new ObservableCollection<RoutingFileInfo>();
             _mobileService.UpdateConfigCompleted += UpdateConfigCompleted;
             _mobileService.AddConfigCompleted += AddConfigCompleted;
-            _vpService = new VPMServiceClient();
-            _vpService.GetAvailableAvlSettingsCompleted += GetAvailableAvlSettingsCompleted;
-            _vpService.GetAvailableDispatchSettingsCompleted += GetAvailableDispatchSettingsCompleted;
+            _vpmService = new VPMServiceClient();
+
+            GetDispatchSettings();
+            GetAVLSettings();
+
+            //_vpService.GetAvailableAvlSettingsCompleted += GetAvailableAvlSettingsCompleted;
+            //_vpmService.GetAvailableDispatchSettingsCompleted += GetAvailableDispatchSettingsCompleted;
         }
         #endregion
 
@@ -65,11 +72,13 @@ namespace VPMobileAdmin.ViewModels
                     _newConfig = String.IsNullOrWhiteSpace(_configuration.Name);
                 }
                 RoutingFiles = new ObservableCollection<RoutingFileInfo>(_mobileService.GetAllRoutingFileInfo(Guid.NewGuid().ToString()));
-                _vpService.GetAvailableAvlSettingsAsync();
-                _vpService.GetAvailableDispatchSettingsAsync();
+                GetDispatchSettings();
+                GetAVLSettings();
 
                 if (!String.IsNullOrWhiteSpace(Properties.Settings.Default.AvlServerAddress))
+                {
                     _configuration.AvlServerAddress = Properties.Settings.Default.AvlServerAddress;
+                }
                 NotifyPropertyChanged();
                 _propertiesChanged = 0;
             }
@@ -492,7 +501,7 @@ namespace VPMobileAdmin.ViewModels
 
         #region private
         private VPMobileServiceClient _mobileService;
-        private VPMServiceClient _vpService;
+        private VPMServiceClient _vpmService;
         private object _pollObject;
         private int _propertiesChanged;
         private bool _newConfig;
@@ -518,7 +527,7 @@ namespace VPMobileAdmin.ViewModels
             {
                 if (e.Error != null)
                 {
-                    ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling available dispatch settings", e.Error);
+                    ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error ", e.Error);
                     return;
                 }
                 if(e.Result)
@@ -530,7 +539,7 @@ namespace VPMobileAdmin.ViewModels
             }
             catch (Exception ex)
             {
-                ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling available dispatch settings", ex);
+                ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error adding config", ex);
             }
         }
 
@@ -540,7 +549,7 @@ namespace VPMobileAdmin.ViewModels
             {
                 if (e.Error != null)
                 {
-                    ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling available dispatch settings", e.Error);
+                    ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error updating config settings", e.Error);
                     return;
                 }
                 if (e.Result)
@@ -556,7 +565,7 @@ namespace VPMobileAdmin.ViewModels
             }
             catch (Exception ex)
             {
-                ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling available dispatch settings", ex);
+                ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error updating config settings", ex);
             }
         }
 
@@ -635,19 +644,44 @@ namespace VPMobileAdmin.ViewModels
             {
                 if (e.Error != null)
                 {
-                    ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling available dispatch settings", e.Error);
+                    ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling routing settings", e.Error);
                     return;
                 }
                 RoutingFiles = new ObservableCollection<RoutingFileInfo>(e.Result);
             }
             catch (Exception ex)
             {
-                ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling available dispatch settings", ex);
+                ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling routing settings", ex);
             }
         }
         #endregion
 
         #region Dispatch Tab
+        private void GetDispatchSettings()
+        {
+            string serviceURLBase = _vpmService.Endpoint.Address.Uri.AbsoluteUri;
+            if (!serviceURLBase.EndsWith("/"))
+            {
+                serviceURLBase += "/";
+            }
+            string url = String.Format("{0}GetAvailableDispatchSettings", serviceURLBase);
+            var address = new Uri(url);
+
+            HttpWebRequest request = (System.Net.HttpWebRequest)WebRequest.Create(address);
+            request.Method = "GET";
+            request.ContentType = "application/json";
+
+            System.Net.HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Encoding encoder = Encoding.UTF8;
+            StreamReader reader = new StreamReader(response.GetResponseStream(), encoder);
+            string OutputData = reader.ReadToEnd();
+
+            //VPMobileDispatchSettings
+            DispatchSettingsRootobject jsonData = (DispatchSettingsRootobject)JsonConvert.DeserializeObject(OutputData, typeof(DispatchSettingsRootobject));
+            DispatchSettings = new ObservableCollection<VPMobileDispatchSettings>(jsonData.GetAvailableDispatchSettingsResult);
+        }
+
+        /*
         private void GetAvailableDispatchSettingsCompleted(object sender, GetAvailableDispatchSettingsCompletedEventArgs e)
         {
             try
@@ -671,16 +705,42 @@ namespace VPMobileAdmin.ViewModels
             {
                 if (e.Error != null)
                 {
-                    ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling available dispatch settings", e.Error);
+                    ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling available avl settings", e.Error);
                     return;
                 }
                 AvlSettings = new ObservableCollection<VPMobileAVLSettings>(e.Result);
             }
             catch (Exception ex)
             {
-                ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling available dispatch settings", ex);
+                ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling available avl settings", ex);
             }
         }
+        */
+
+        private void GetAVLSettings()
+        {
+            string serviceURLBase = _vpmService.Endpoint.Address.Uri.AbsoluteUri;
+            if (!serviceURLBase.EndsWith("/"))
+            {
+                serviceURLBase += "/";
+            }
+            string url = String.Format("{0}GetAvailableAvlSettings", serviceURLBase);
+            var address = new Uri(url);
+
+            HttpWebRequest request = (System.Net.HttpWebRequest)WebRequest.Create(address);
+            request.Method = "GET";
+            request.ContentType = "application/json";
+
+            System.Net.HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Encoding encoder = Encoding.UTF8;
+            StreamReader reader = new StreamReader(response.GetResponseStream(), encoder);
+            string OutputData = reader.ReadToEnd();
+
+            //VPMobileDispatchSettings
+            AvlSettingsRootobject jsonData = (AvlSettingsRootobject)JsonConvert.DeserializeObject(OutputData, typeof(AvlSettingsRootobject));
+            AvlSettings = new ObservableCollection<VPMobileAVLSettings>(jsonData.GetAvailableAvlSettingsResult);
+        }
+
         #endregion
         #endregion
 

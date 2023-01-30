@@ -20,6 +20,19 @@ namespace VP_Mobile.ViewModels
         public AvlViewModel(Dictionary<string, Object> properties) : base(properties)
         {
         }
+
+        public AvlViewModel(Getavllastreportrecorddataresult arec)
+        {
+            // Required Fields
+            this.Add(GROUP_ID, arec.GroupID);
+            this.Add(UNIT_ID, arec.UnitID);
+            this.Add(UNIT_ALIAS, arec.UnitAlias);
+            this.Add(LATITUDE, arec.Lat);
+            this.Add(LONGITUDE, arec.Lon);
+
+            // Additional Fields
+            this.Add("GroupName", arec.GroupName);
+        }
         #endregion
 
         #region public properties
