@@ -1802,50 +1802,72 @@ public class MainViewModel : INotifyPropertyChanged
 
     private void GetDispatchSettings(Guid DispatchId)
     {
-        string serviceURLBase = VPService.Endpoint.Address.Uri.AbsoluteUri;
-        if (!serviceURLBase.EndsWith("/"))
+        string dispatchURL = "Undefined";
+
+        try
         {
-            serviceURLBase += "/";
+            string serviceURLBase = VPService.Endpoint.Address.Uri.AbsoluteUri;
+            if (!serviceURLBase.EndsWith("/"))
+            {
+                serviceURLBase += "/";
+            }
+            dispatchURL = String.Format("{0}GetDispatchSettings?DispatchId={1}", serviceURLBase, DispatchId.ToString());
+            var address = new Uri(dispatchURL);
+
+            HttpWebRequest request = (System.Net.HttpWebRequest)WebRequest.Create(address);
+            request.Method = "GET";
+            request.ContentType = "application/json";
+
+            System.Net.HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Encoding encoder = Encoding.UTF8;
+            StreamReader reader = new StreamReader(response.GetResponseStream(), encoder);
+            string OutputData = reader.ReadToEnd();
+
+            //VPMobileDispatchSettings
+            DispatchSettingsRootobject jsonData = (DispatchSettingsRootobject)JsonConvert.DeserializeObject(OutputData, typeof(DispatchSettingsRootobject));
+            GetDispatchSettingsCompleted(jsonData.GetDispatchSettingsResult);
         }
-        string url = String.Format("{0}GetDispatchSettings?DispatchId={1}", serviceURLBase, DispatchId.ToString());
-        var address = new Uri(url);
-
-        HttpWebRequest request = (System.Net.HttpWebRequest)WebRequest.Create(address);
-        request.Method = "GET";
-        request.ContentType = "application/json";
-
-        System.Net.HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-        Encoding encoder = Encoding.UTF8;
-        StreamReader reader = new StreamReader(response.GetResponseStream(), encoder);
-        string OutputData = reader.ReadToEnd();
-
-        //VPMobileDispatchSettings
-        DispatchSettingsRootobject jsonData = (DispatchSettingsRootobject)JsonConvert.DeserializeObject(OutputData, typeof(DispatchSettingsRootobject));
-        GetDispatchSettingsCompleted(jsonData.GetDispatchSettingsResult);
+        catch (Exception ex)
+        {
+            var message = String.Format("Error loading dispatch settings from service url: {0}", dispatchURL);
+            ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, message, ex);
+            Logging.LogMessage(Logging.LogType.Error, message, ex);
+        }
     }
 
     private void GetAvlSettings(Guid avlId)
     {
-        string serviceURLBase = VPService.Endpoint.Address.Uri.AbsoluteUri;
-        if (!serviceURLBase.EndsWith("/"))
+        string avlURL = "Undefined";
+
+        try
         {
-            serviceURLBase += "/";
+            string serviceURLBase = VPService.Endpoint.Address.Uri.AbsoluteUri;
+            if (!serviceURLBase.EndsWith("/"))
+            {
+                serviceURLBase += "/";
+            }
+            avlURL = String.Format("{0}GetAvlSettings?avlId={1}", serviceURLBase, avlId.ToString());
+            var address = new Uri(avlURL);
+
+            HttpWebRequest request = (System.Net.HttpWebRequest)WebRequest.Create(address);
+            request.Method = "GET";
+            request.ContentType = "application/json";
+
+            System.Net.HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Encoding encoder = Encoding.UTF8;
+            StreamReader reader = new StreamReader(response.GetResponseStream(), encoder);
+            string OutputData = reader.ReadToEnd();
+
+            //VPMobileAvlSettings
+            AvlSettingsRootobject jsonData = (AvlSettingsRootobject)JsonConvert.DeserializeObject(OutputData, typeof(AvlSettingsRootobject));
+            ProcessAvlSettings(jsonData.GetAvlSettingsResult);
         }
-        string url = String.Format("{0}GetAvlSettings?avlId={1}", serviceURLBase, avlId.ToString());
-        var address = new Uri(url);
-
-        HttpWebRequest request = (System.Net.HttpWebRequest)WebRequest.Create(address);
-        request.Method = "GET";
-        request.ContentType = "application/json";
-
-        System.Net.HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-        Encoding encoder = Encoding.UTF8;
-        StreamReader reader = new StreamReader(response.GetResponseStream(), encoder);
-        string OutputData = reader.ReadToEnd();
-
-        //VPMobileAvlSettings
-        AvlSettingsRootobject jsonData = (AvlSettingsRootobject)JsonConvert.DeserializeObject(OutputData, typeof(AvlSettingsRootobject));
-        ProcessAvlSettings(jsonData.GetAvlSettingsResult);
+        catch (Exception ex)
+        {
+            var message = String.Format("Error loading avl settings from service url: {0}", avlURL);
+            ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, message, ex);
+            Logging.LogMessage(Logging.LogType.Error, message, ex);
+        }
     }
 
     private void StartGPSListener()
@@ -2481,6 +2503,30 @@ public class MainViewModel : INotifyPropertyChanged
         }
     }
 
+    private void GetDispatchRecordData(string avlId)
+    {
+        string serviceURLBase = _vpService.Endpoint.Address.Uri.AbsoluteUri;
+        if (!serviceURLBase.EndsWith("/"))
+        {
+            serviceURLBase += "/";
+        }
+        string url = String.Format("{0}GetDispatchRecordData?strID={1}", serviceURLBase, avlId);
+        var address = new Uri(url);
+
+        HttpWebRequest request = (System.Net.HttpWebRequest)WebRequest.Create(address);
+        request.Method = "GET";
+        request.ContentType = "application/json";
+
+        System.Net.HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+        Encoding encoder = Encoding.UTF8;
+        StreamReader reader = new StreamReader(response.GetResponseStream(), encoder);
+        string OutputData = reader.ReadToEnd();
+
+        //VPMobileDispatchSettings
+        GetdispatchrecorddataRootobject jsonData = (GetdispatchrecorddataRootobject)JsonConvert.DeserializeObject(OutputData, typeof(GetdispatchrecorddataRootobject));
+        GetDispatchRecordDataCompleted(jsonData.GetDispatchRecordDataResult);
+    }
+
     private void IncidentTimer_Elapsed(object sender, ElapsedEventArgs e)
     {
         try
@@ -2488,7 +2534,7 @@ public class MainViewModel : INotifyPropertyChanged
             Logging.LogMethodCall(MethodBase.GetCurrentMethod().DeclaringType.Name);
             _incidentTimer.Stop();
 
-            //VPService.GetDispatchRecordData(Config.DispatchID.ToString());
+            GetDispatchRecordData(Config.DispatchID.ToString());
 
             // reset the time if the interval changed
             if (_incidentTimer.Interval != UserSettings.IncidentRefreshInterval)
