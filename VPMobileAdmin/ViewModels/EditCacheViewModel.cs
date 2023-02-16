@@ -49,21 +49,35 @@ namespace VPMobileAdmin.ViewModels
             {
                 _mapService = value;
                 NotifyPropertyChanged();
-                var match = Regex.Match(_mapService.ServiceUrl, @"([^\/]*)\/[^\/]*Server");
-                if (match.Success)
+                if (_mapService != null)
                 {
-                    Configuration.Name = match.Groups[1].Value;
-                }
-                Configuration.IsBaseMap = _mapService is Service;
-                if(!Configuration.IsBaseMap)
-                {
-                    foreach (var lyr in ((Feature)_mapService).Layers)
+                    var match = Regex.Match(_mapService.ServiceUrl, @"([^\/]*)\/[^\/]*Server");
+                    if (match.Success)
                     {
-                        _identifyingLayers.Add(new Pair<bool, Layer>(Configuration.IdentifyingLayers.Contains(lyr.Name), lyr));
+                        Configuration.Name = match.Groups[1].Value;
                     }
-                    NotifyPropertyChanged("IdentifyingLayers");
+                    Configuration.IsBaseMap = _mapService is Service;
+                    if (!Configuration.IsBaseMap)
+                    {
+                        foreach (var lyr in ((Feature)_mapService).Layers)
+                        {
+                            _identifyingLayers.Add(new Pair<bool, Layer>(Configuration.IdentifyingLayers.Contains(lyr.Name), lyr));
+                        }
+                        NotifyPropertyChanged("IdentifyingLayers");
+                    }
                 }
             }
+        }
+
+        public void AddMapServiceByUrl(string serviceUrl)
+        {
+            var match = Regex.Match(serviceUrl, @"([^\/]*)\/[^\/]*Server");
+            if (match.Success)
+            {
+                Configuration.Name = match.Groups[1].Value;
+            }
+            Configuration.IsBaseMap = true;
+            Configuration.URL = serviceUrl;
         }
 
         private ObservableCollection<Pair<bool, Layer>> _identifyingLayers;
@@ -86,10 +100,15 @@ namespace VPMobileAdmin.ViewModels
         public void Save()
         {
             Configuration.IdentifyingLayers = new List<string>(_identifyingLayers.Where(lyr => lyr.First).Select(lyr => lyr.Second.Name));
-            Configuration.URL = MapService.ServiceUrl;
-            Configuration.IsBaseMap = MapService is Service;
+            if (MapService != null)
+            {
+                Configuration.URL = MapService.ServiceUrl;
+                Configuration.IsBaseMap = MapService is Service;
+            }
             if (Configuration.SyncEnvelope != null)
+            {
                 Configuration.SyncEnvelope = null;
+            }
         }
         #endregion
         #endregion

@@ -58,5 +58,9 @@ namespace VPMobileAdmin.Views
         }
         #endregion
 
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

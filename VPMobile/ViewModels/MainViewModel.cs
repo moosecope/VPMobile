@@ -2584,7 +2584,10 @@ public class MainViewModel : INotifyPropertyChanged
                         var incident = new IncidentViewModel(incidentInfo);
                         var callType = IncidentsList.CallTypes.FirstOrDefault(type => type.CallTypeValue == incident.CallType);
                         Logging.LogMessage(Logging.LogType.Info, String.Format("Incident {0} CallType = {1}", incident.UniqueID, incident.CallType));
-                        if (callType == null) continue;
+                        if (callType == null)
+                        {
+                            continue;
+                        }
                         incident.CallTypeImage = callType.OriginalCallImage;
                         incident.AssignedIncident = !String.IsNullOrWhiteSpace(UserSettings.UnitNumber) && UserSettings.UnitNumber == incident.UnitID;
                         var oldIncident = IncidentsList.Incidents.FirstOrDefault(unt => unt.UniqueID.ToString().Equals(incident.UniqueID.ToString()));

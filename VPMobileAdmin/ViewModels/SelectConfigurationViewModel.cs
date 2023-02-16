@@ -156,11 +156,7 @@ namespace VPMobileAdmin.ViewModels
                 _mobileService.GetConfigsAsync(Guid.NewGuid().ToString());                
 
                 dlgConfiguration.ShowDialog();
-
-               
-
-
-
+              
             }
             catch (Exception ex)
             {

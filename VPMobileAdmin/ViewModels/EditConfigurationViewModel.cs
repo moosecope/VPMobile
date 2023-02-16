@@ -237,14 +237,35 @@ namespace VPMobileAdmin.ViewModels
                 {
                     var service = dlgService.ViewModel.Service;
 
-                    var dlgCache = new EditCacheDialog();
-                    dlgCache.Owner = View;
-                    dlgCache.ViewModel.MapService = service;
-                    dlgCache.ShowDialog();
-
-                    if (dlgCache.DialogResult == true)
+                    if (service == null)
                     {
-                        Configuration.MapServices.Add(dlgCache.ViewModel.Configuration);
+                        string message = String.Format("Unable to verify the service.  Do you want to use the following serivce anyway?\n\n{0}", dlgService.ViewModel.ServerUrl);
+                        MessageBoxResult rslt = MessageBox.Show(message, "Confirm", MessageBoxButton.YesNo);
+                        if (rslt == MessageBoxResult.Yes)
+                        {
+                            var dlgCache = new EditCacheDialog();
+                            dlgCache.Owner = View;
+                            dlgCache.ViewModel.AddMapServiceByUrl(dlgService.ViewModel.ServerUrl);
+                            dlgCache.ShowDialog();
+
+                            if (dlgCache.DialogResult == true)
+                            {
+                                Configuration.MapServices.Add(dlgCache.ViewModel.Configuration);
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        var dlgCache = new EditCacheDialog();
+                        dlgCache.Owner = View;
+                        dlgCache.ViewModel.MapService = service;
+                        dlgCache.ShowDialog();
+
+                        if (dlgCache.DialogResult == true)
+                        {
+                            Configuration.MapServices.Add(dlgCache.ViewModel.Configuration);
+                        }
                     }
                 }
             }
@@ -262,7 +283,7 @@ namespace VPMobileAdmin.ViewModels
                     return;
 
                 _pollObject = Configuration.MapServices[index];
-                ArcGisServiceInfo.ServiceInfo.RetrieveFeatureInfoCompleted += ServiceInfo_RetrieveFeatureInfoCompleted;
+                ArcGisServiceInfo.ServiceInfo.RetrieveServiceInfoCompleted += ServiceInfo_RetrieveServiceInfoCompleted;
                 ArcGisServiceInfo.ServiceInfo.RetrieveServiceInfo(Configuration.MapServices[index].URL);
             }
             catch (Exception ex)
@@ -569,6 +590,80 @@ namespace VPMobileAdmin.ViewModels
             }
         }
 
+        private void ServiceInfo_RetrieveServiceInfoCompleted(object sender, RetrieveServiceInfoEventArgs e)
+        {
+            try
+            {
+                ArcGisServiceInfo.ServiceInfo.RetrieveServiceInfoCompleted -= ServiceInfo_RetrieveServiceInfoCompleted;
+                if (e.Error != null)
+                {
+                    //ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling service info", e.Error);
+                    string message = String.Format("Error pulling service info.\n\n{0}\n\nDo you want to edit the service anyway?", e.Error);
+                    MessageBoxResult result = MessageBox.Show(message, "Edit Service", MessageBoxButton.YesNo);
+                    if (result == MessageBoxResult.No)
+                    {
+                        return;
+                    }
+                }
+
+                if (_pollObject is CacheSettings)
+                {
+                    var cache = _pollObject as CacheSettings;
+                    var index = Configuration.MapServices.IndexOf(cache);
+                    var name = cache.Name;
+                    Application.Current.Dispatcher.BeginInvoke((Action)(() =>
+                    {
+                        var dlgCache = new EditCacheDialog();
+                        dlgCache.Owner = View;
+                        dlgCache.ViewModel.Configuration = cache;
+                        dlgCache.ViewModel.MapService = e.ServiceData;
+                        dlgCache.ShowDialog();
+
+                        if (dlgCache.DialogResult == true)
+                        {
+                            Configuration.MapServices[index] = dlgCache.ViewModel.Configuration;
+                            foreach (var gcdr in Configuration.Geocoders.Where(gcdr => gcdr.CacheName == name))
+                            {
+                                gcdr.CacheName = Configuration.MapServices[index].Name;
+                            }
+                            foreach (var stint in Configuration.StreetList.Where(stint => stint.CacheName == name))
+                            {
+                                stint.CacheName = Configuration.MapServices[index].Name;
+                            }
+                        }
+                    }));
+                }
+                else if (_pollObject is GeocoderSettings)
+                {
+                    var geocoder = _pollObject as GeocoderSettings;
+                    var index = Configuration.Geocoders.IndexOf(geocoder);
+                    var cache = Configuration.MapServices.FirstOrDefault(cach => cach.Name == geocoder.CacheName);
+                    var layer = e.ServiceData.Layers.FirstOrDefault(lyr => lyr.Name == geocoder.LayerName);
+
+                    Application.Current.Dispatcher.BeginInvoke((Action)(() =>
+                    {
+                        var dlgCache = new EditGeocoderDialog();
+                        dlgCache.ViewModel.LayerInfo = layer;
+                        dlgCache.ViewModel.Configuration = geocoder;
+                        dlgCache.ShowDialog();
+
+                        if (dlgCache.DialogResult == true)
+                        {
+                            Configuration.Geocoders[index] = dlgCache.ViewModel.Configuration;
+                        }
+                    }));
+                }
+                else
+                {
+                    ErrorHelper.OnMessage("Service polled for unknown object");
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error editing cache settings", ex);
+            }
+        }
+
         private void ServiceInfo_RetrieveFeatureInfoCompleted(object sender, RetrieveFeatureInfoEventArgs e)
         {
             try
@@ -576,7 +671,7 @@ namespace VPMobileAdmin.ViewModels
                 ArcGisServiceInfo.ServiceInfo.RetrieveFeatureInfoCompleted -= ServiceInfo_RetrieveFeatureInfoCompleted;
                 if (e.Error != null)
                 {
-                    ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling service info", e.Error);
+                    ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling feature service info", e.Error);
                     return;
                 }
 
@@ -588,6 +683,7 @@ namespace VPMobileAdmin.ViewModels
                     Application.Current.Dispatcher.BeginInvoke((Action)(() =>
                     {
                         var dlgCache = new EditCacheDialog();
+                        dlgCache.Owner = View;
                         dlgCache.ViewModel.Configuration = cache;
                         dlgCache.ViewModel.MapService = e.FeatureData;
                         dlgCache.ShowDialog();
