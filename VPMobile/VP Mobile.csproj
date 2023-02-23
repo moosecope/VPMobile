@@ -249,6 +249,7 @@
     </EmbeddedResource>
     <Content Include="logging.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="GTGkey.pfx" />
     <None Include="packages.config" />

@@ -1528,14 +1528,16 @@ public class MainViewModel : INotifyPropertyChanged
                     Map.OperationalLayers.Add(lyr);
                 }
             }
-
-            Application.Current.Dispatcher.Invoke(LoadNextMapService);
         }
         catch (Exception ex)
         {
             var message = "Error on tile cache loaded";
             ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, message, ex);
             Logging.LogMessage(Logging.LogType.Error, message, ex);
+        }
+        finally
+        {
+            Application.Current.Dispatcher.Invoke(LoadNextMapService);
         }
     }
 
@@ -1688,14 +1690,16 @@ public class MainViewModel : INotifyPropertyChanged
                 }
                 Legend.Layers = Map.AllLayers;
             }
-
-            Application.Current.Dispatcher.Invoke(LoadNextMapService);
         }
         catch (Exception ex)
         {
             var message = "Error on geodatabase loaded";
             ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, message, ex);
             Logging.LogMessage(Logging.LogType.Error, message, ex);
+        }
+        finally
+        {
+            Application.Current.Dispatcher.Invoke(LoadNextMapService);
         }
     }
 

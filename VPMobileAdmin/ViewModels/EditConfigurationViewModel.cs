@@ -283,7 +283,10 @@ namespace VPMobileAdmin.ViewModels
                     return;
 
                 _pollObject = Configuration.MapServices[index];
+
                 ArcGisServiceInfo.ServiceInfo.RetrieveServiceInfoCompleted += ServiceInfo_RetrieveServiceInfoCompleted;
+                ArcGisServiceInfo.ServiceInfo.RetrieveFeatureInfoCompleted += ServiceInfo_RetrieveFeatureInfoCompleted;
+
                 ArcGisServiceInfo.ServiceInfo.RetrieveServiceInfo(Configuration.MapServices[index].URL);
             }
             catch (Exception ex)
@@ -595,6 +598,7 @@ namespace VPMobileAdmin.ViewModels
             try
             {
                 ArcGisServiceInfo.ServiceInfo.RetrieveServiceInfoCompleted -= ServiceInfo_RetrieveServiceInfoCompleted;
+                ArcGisServiceInfo.ServiceInfo.RetrieveFeatureInfoCompleted -= ServiceInfo_RetrieveFeatureInfoCompleted;
                 if (e.Error != null)
                 {
                     //ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling service info", e.Error);
@@ -668,7 +672,9 @@ namespace VPMobileAdmin.ViewModels
         {
             try
             {
+                ArcGisServiceInfo.ServiceInfo.RetrieveServiceInfoCompleted -= ServiceInfo_RetrieveServiceInfoCompleted;
                 ArcGisServiceInfo.ServiceInfo.RetrieveFeatureInfoCompleted -= ServiceInfo_RetrieveFeatureInfoCompleted;
+
                 if (e.Error != null)
                 {
                     ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling feature service info", e.Error);

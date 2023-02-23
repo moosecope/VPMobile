@@ -104,7 +104,7 @@ namespace VPMobileAdmin.ViewModels
             {
                 if (e.Error != null)
                 {
-                    ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling service info", e.Error);
+                    ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling feature service info", e.Error);
                     return;
                 }
                 Service = e.FeatureData;
@@ -112,7 +112,7 @@ namespace VPMobileAdmin.ViewModels
             }
             catch (Exception ex)
             {
-                ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling service info", ex);
+                ErrorHelper.OnError(MethodBase.GetCurrentMethod().DeclaringType.Name, "Error pulling feature service info", ex);
             }
         }
 
