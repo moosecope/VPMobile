@@ -176,7 +176,7 @@ namespace VP_Mobile.ViewModels
             get
             {
                 object ret;
-                if (base.TryGetValue(LONGITUDE, out ret) && ret is double)
+                if (base.TryGetValue(LONGITUDE, out ret))
                     return Convert.ToDouble(ret);
                 else
                     return 0.0;

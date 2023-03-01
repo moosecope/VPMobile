@@ -610,7 +610,7 @@ public class MainViewModel : INotifyPropertyChanged
 
                 _loading = -1;
                 _initialLoad = true;
-                Application.Current.Dispatcher.Invoke(LoadNextMapService);
+                Dispatcher.CurrentDispatcher.Invoke(LoadNextMapService);
             }
             catch (Exception ex)
             {
@@ -1537,7 +1537,7 @@ public class MainViewModel : INotifyPropertyChanged
         }
         finally
         {
-            Application.Current.Dispatcher.Invoke(LoadNextMapService);
+            Dispatcher.CurrentDispatcher.Invoke(LoadNextMapService);
         }
     }
 
@@ -1699,7 +1699,7 @@ public class MainViewModel : INotifyPropertyChanged
         }
         finally
         {
-            Application.Current.Dispatcher.Invoke(LoadNextMapService);
+            Dispatcher.CurrentDispatcher.Invoke(LoadNextMapService);
         }
     }
 
@@ -2507,15 +2507,17 @@ public class MainViewModel : INotifyPropertyChanged
         }
     }
 
-    private void GetDispatchRecordData(string avlId)
+    private void GetDispatchRecordData(string dispatchId)
     {
         string serviceURLBase = _vpService.Endpoint.Address.Uri.AbsoluteUri;
         if (!serviceURLBase.EndsWith("/"))
         {
             serviceURLBase += "/";
         }
-        string url = String.Format("{0}GetDispatchRecordData?strID={1}", serviceURLBase, avlId);
+        string url = String.Format("{0}GetDispatchRecordData?strID={1}", serviceURLBase, dispatchId);
         var address = new Uri(url);
+
+        //Logging.LogMessage(Logging.LogType.Debug, String.Format("GetDispatchRecordData: {0}", url));
 
         HttpWebRequest request = (System.Net.HttpWebRequest)WebRequest.Create(address);
         request.Method = "GET";
@@ -2587,7 +2589,7 @@ public class MainViewModel : INotifyPropertyChanged
                         //MessageBox.Show(display);
                         var incident = new IncidentViewModel(incidentInfo);
                         var callType = IncidentsList.CallTypes.FirstOrDefault(type => type.CallTypeValue == incident.CallType);
-                        Logging.LogMessage(Logging.LogType.Info, String.Format("Incident {0} CallType = {1}", incident.UniqueID, incident.CallType));
+                        Logging.LogMessage(Logging.LogType.Debug, String.Format("Incident {0} CallType = {1} Lat={2} Lon={3}", incident.UniqueID, incident.CallType, incident.Latitude, incident.Longitude));
                         if (callType == null)
                         {
                             continue;

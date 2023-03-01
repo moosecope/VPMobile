@@ -291,7 +291,10 @@ namespace VPMobileObjects
             get { return _dispatchGroups; }
             set
             {
-                _dispatchGroups = value;
+                if (value != null)
+                {
+                    _dispatchGroups = value.Distinct().ToList();
+                }
                 NotifyPropertyChanged();
             }
         }

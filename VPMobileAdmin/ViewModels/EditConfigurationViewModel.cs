@@ -583,7 +583,7 @@ namespace VPMobileAdmin.ViewModels
                 }
                 else
                 {
-                    ErrorHelper.OnMessage("Config was not able to be saved.");
+                    ErrorHelper.OnMessage("Config was not able to be saved.\n" + e.ToString());
                 }
 
             }
